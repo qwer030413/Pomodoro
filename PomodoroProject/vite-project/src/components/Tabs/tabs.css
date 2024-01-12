@@ -1,0 +1,29 @@
+.tabContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.buttonContainer{
+    display: flex;
+
+    gap:2rem;
+    
+
+}
+
+.title{
+    justify-content: start;
+    margin-right: 30%;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+
+}
+.divider{
+    width: 800px;
+}
+
+.tab{
+    padding-top: 200px;
+}
