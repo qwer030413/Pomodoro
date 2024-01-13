@@ -1,9 +1,10 @@
+import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
 
 
 interface tabbtn {
-    text?: string;
+    text: string;
     address: string;
 }
 
@@ -18,7 +19,7 @@ interface tabbtn {
 //     );
 // }
 
-const TabButton = (t: tabbtn) =>{
+const TabButton = (t: tabbtn) : ReactElement=>{
     
     return(
         <Link to ={t.address}>
@@ -27,4 +28,5 @@ const TabButton = (t: tabbtn) =>{
         
     );
 }
+
 export default TabButton;
