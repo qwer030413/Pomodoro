@@ -27,3 +27,6 @@
 .tab{
     padding-top: 100px;
 }
+.minicontainer{
+    display: flex;
+}
