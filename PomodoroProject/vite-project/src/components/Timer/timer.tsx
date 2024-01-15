@@ -5,8 +5,8 @@ import { CircularProgressbar , buildStyles, CircularProgressbarWithChildren } fr
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function Timer(): ReactElement{
-    let s = 3;
-    let m = 1;
+    let s = 10;
+    let m = 0;
     let h = 0;
     const [seconds, setSeconds] = useState(s);
     const [minutes, setMinutes] = useState(m);
@@ -44,21 +44,41 @@ export default function Timer(): ReactElement{
         clearInterval(id);
         setStart(false);
     }
+    //1:00:1
+    //1:1:1
+    //0:1:1
     if(seconds == 0 && minutes == 0 && hours == 0)
     {
         clearInterval(id);
     }
-    if(seconds < 0 && minutes > 0)
+    else{
+        if(seconds < 0 && minutes > 0)
         {
+            
             setSeconds(59);
             setMinutes(minutes => minutes - 1);
 
         }
-    else if (minutes < 0 && hours > 0)
-    {
-        setMinutes(59);
-        setHours(hours => hours - 1);
+        else if (minutes < 0 && hours > 0)
+        {
+            setMinutes(59);
+            setHours(hours => hours - 1);
+        }
+       else if(seconds < 0 && minutes == 0 && hours > 0)
+       {
+            setHours(hours => hours - 1);
+            setMinutes(59);
+            setSeconds(59);
+       }
     }
+    
+    // else if(seconds < 0 && minutes == 0 && hours > 0)
+    // {
+    //     setMinutes(59);
+    //     setHours(hours => hours - 1);
+    // }
+
+    
 
     return(
         <div className="timer"  style={{ width: 400, height: 400 }}>

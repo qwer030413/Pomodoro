@@ -37,7 +37,7 @@
 }
 .showPomodoro{
     display: block;
-    background-color: rgb(115, 119, 51);
+    background-color: rgb(98, 99, 86);
 }
 .showLongBreak{
     display: block;
@@ -60,7 +60,7 @@
     height: 550px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(115, 119, 51);
+    background-color: rgb(98, 99, 86);
 
 }
 .minicontainer2{
