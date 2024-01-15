@@ -29,29 +29,32 @@
 }
 .minitab{
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
     margin-bottom: 60px;
+    text-align: center;
+    
 }
 .show-content{
     display: block;
 }
 .showPomodoro{
     display: block;
-    background-color: rgb(98, 99, 86);
+    background-color: transparent;
 }
 .showLongBreak{
     display: block;
-    background-color: rgb(56, 51, 61);
+    background-color: transparent;
 }
 .showShortBreak{
     display: block;
-    background-color: rgb(110, 74, 69);
+    background-color: transparent;
 }
 .content{
     display:none;
 }
 .minitabbtn{
     cursor: pointer;
+    
 }
 .minicontainer1{
     display: flex;
@@ -80,4 +83,42 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(56, 51, 61);
+    
+}
+
+.minitabbtn{
+    cursor: pointer;
+    position: absolute;
+    
+}
+.himinitabbtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+
+.indicator{
+    background-color: cyan;
+    border-radius: 25px;
+    inset: 0;
+    /* color:transparent; */
+    position: absolute;
+    cursor: pointer;
+    
+    
+
+
+    
+}
+.hi{
+    display: flex;
+    position: relative;
+    padding: 10px;
+}
+.highlight{
+    position: relative;
+    cursor: pointer;
+
 }
