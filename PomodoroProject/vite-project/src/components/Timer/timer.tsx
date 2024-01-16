@@ -6,6 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { FaPauseCircle } from "react-icons/fa";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaArrowRotateLeft } from "react-icons/fa6";
+import {motion} from 'framer-motion';
 
 
 export default function Timer(hr:number,min:number,sec:number): ReactElement{
@@ -88,9 +89,39 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
             <CircularProgressbarWithChildren value={percentage}>
                 <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1>
                 <div className="startstop">
-                    <button className="timectrl"onClick={() => setStart(false)}><FaPauseCircle /></button>
-                    <button className="timectrl"onClick={() => setStart(true)}><FaCirclePlay /></button>
-                    <button className="timectrl"onClick={reset}><FaArrowRotateLeft /></button>
+                    <motion.div 
+                    whileHover={{ 
+                        scale: 1.2,
+                        textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                     }}
+                     whileTap={{
+                        scale:1,
+                     }}
+                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
+
+                    className="timectrl"onClick={() => setStart(false)}><FaPauseCircle /></motion.div>
+                    <motion.div 
+                    whileHover={{ 
+                        scale: 1.2,
+                        textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                     }}
+                     whileTap={{
+                        scale:1,
+                     }}
+                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
+
+                    className="timectrl"onClick={() => setStart(true)}><FaCirclePlay /></motion.div>
+                    <motion.div 
+                    whileHover={{ 
+                        scale: 1.2,
+                        textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                     }}
+                     whileTap={{
+                        scale:1,
+                     }}
+                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
+
+                    className="timectrl"onClick={reset}><FaArrowRotateLeft /></motion.div>
                 </div>
             </CircularProgressbarWithChildren>
             

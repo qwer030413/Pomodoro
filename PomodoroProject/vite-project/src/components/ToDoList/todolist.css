@@ -15,8 +15,8 @@
 .addbar{
     display: flex;
     /* background-color: aliceblue; */
-    padding: 5px;
-    width: 30%;
+    padding:5px;
+    width: 100%;
     min-width: 600px;
 }
 
@@ -25,7 +25,7 @@
     width: 100%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    padding: 15px;
+    padding: 25px;
 }
 
 .todoForm{
@@ -37,12 +37,12 @@
 }
 .todoItems{
     width: 100%;
-    padding: 10px;
     background-color: black;
     margin-top: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
+    padding: 10px;
 
 }
 .functions{
@@ -55,4 +55,14 @@
 }
 .ToDoConent{
     width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon{
+    display: flex;
+    align-items: center;
+    margin:0;
+    font-size: 25px;
 }
