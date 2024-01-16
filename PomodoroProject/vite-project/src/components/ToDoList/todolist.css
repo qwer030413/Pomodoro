@@ -1,6 +1,6 @@
 
 .todoDivider{
-    width: 40%;
+    width: 100%;
     margin-bottom: 20px;
     min-width: 500px
     
@@ -17,7 +17,7 @@
     /* background-color: aliceblue; */
     padding: 5px;
     width: 30%;
-    min-width: 500px;
+    min-width: 600px;
 }
 
 .todoinput{
@@ -25,4 +25,34 @@
     width: 100%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    padding: 15px;
+}
+
+.todoForm{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.todoItems{
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+}
+.functions{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+    padding: 5px;
+    gap:1rem;
+}
+.ToDoConent{
+    width: 700px;
 }
