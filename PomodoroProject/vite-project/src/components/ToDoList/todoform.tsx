@@ -6,7 +6,7 @@ export default function  ToDoForm(){
     const [newToDo, setNewToDo] = useState("");
     function clicked()
     {
-        // document.getElementById("txt").value = "";
+        document.getElementById("txt").value = "";
         
         
     }
