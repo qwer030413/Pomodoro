@@ -29,10 +29,7 @@ export default function MiniTab(): ReactElement{
         <div className={'minicontainer' + tabs}>
             
             <div className='minitab'>
-                {/* <div className = {"minitabbtn"} onClick={()=>updateTabs(1)}>Pomodoro</div>
-                <div  className = {"minitabbtn"} onClick={()=>updateTabs(2)}>Short Break</div>
-                <div  className = {"minitabbtn"} onClick={()=>updateTabs(3)}>Long Break</div>
-                <motion.div layoutId='index' className="indicator" >{minitabs[tabs - 1].label}</motion.div> */}
+                
                 {minitabs.map((tab) =>(
                     <div
                     key={tab.id}
@@ -57,13 +54,13 @@ export default function MiniTab(): ReactElement{
             
             <div className='minicontent'>
                 <div className={tabs === 1? "showPomodoro" : "content"}>
-                    <Timer />
+                    {Timer(0,1,3)}
                 </div>
                 <div className={tabs === 2? "showShortBreak" : "content"}>
-                    <Timer />
+                    {Timer(0,5,1)}
                 </div>
                 <div className={tabs === 3? "showLongBreak" : "content"}>
-                    <Timer />
+                    {Timer(0,15,1)} 
                 </div>
             </div>
             

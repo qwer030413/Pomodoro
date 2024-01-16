@@ -1,0 +1,15 @@
+.addbtn{
+    /* margin-top: 50; */
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.addbtn:hover{
+    border-color: transparent;
+}

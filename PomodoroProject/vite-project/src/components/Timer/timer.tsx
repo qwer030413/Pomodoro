@@ -3,18 +3,20 @@ import { useState, useEffect } from "react";
 import './timer.css';
 import { CircularProgressbar , buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
+import { FaPauseCircle } from "react-icons/fa";
+import { FaCirclePlay } from "react-icons/fa6";
+import { FaArrowRotateLeft } from "react-icons/fa6";
 
-export default function Timer(): ReactElement{
-    let s = 10;
-    let m = 0;
-    let h = 0;
-    const [seconds, setSeconds] = useState(s);
-    const [minutes, setMinutes] = useState(m);
-    const [hours, setHours] = useState(h);
+
+export default function Timer(hr:number,min:number,sec:number): ReactElement{
+    
+    const [seconds, setSeconds] = useState(sec);
+    const [minutes, setMinutes] = useState(min);
+    const [hours, setHours] = useState(hr);
     const [start, setStart] = useState(false);
     const [id, setId] = useState(0);
 
-    let totalsec = s + (m * 60) + (h * 3600);
+    let totalsec = sec + (min * 60) + (hr * 3600);
     let remainsec = seconds + (minutes * 60) + (hours * 3600);
     let percentage = (remainsec / totalsec) * 100;
     
@@ -38,9 +40,9 @@ export default function Timer(): ReactElement{
     
     const reset = () => {
         console.log(start);
-        setSeconds(s);
-        setMinutes(m);
-        setHours(h);
+        setSeconds(sec);
+        setMinutes(min);
+        setHours(hr);
         clearInterval(id);
         setStart(false);
     }
@@ -86,9 +88,9 @@ export default function Timer(): ReactElement{
             <CircularProgressbarWithChildren value={percentage}>
                 <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1>
                 <div className="startstop">
-                    <button onClick={() => setStart(true)}>start</button>
-                    <button onClick={() => setStart(false)}>stop</button>
-                    <button onClick={reset}>reset</button>
+                    <button className="timectrl"onClick={() => setStart(false)}><FaPauseCircle /></button>
+                    <button className="timectrl"onClick={() => setStart(true)}><FaCirclePlay /></button>
+                    <button className="timectrl"onClick={reset}><FaArrowRotateLeft /></button>
                 </div>
             </CircularProgressbarWithChildren>
             

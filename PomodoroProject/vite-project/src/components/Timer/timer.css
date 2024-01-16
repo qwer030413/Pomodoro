@@ -1,8 +1,19 @@
 .timer{
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
     
 }
 .startstop{
     display: flex;
+    gap:1rem;
+}
+
+.timectrl{
+    background-color: transparent;
+    font-size: 40px;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }

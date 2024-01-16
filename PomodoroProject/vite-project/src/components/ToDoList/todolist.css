@@ -1,0 +1,28 @@
+
+.todoDivider{
+    width: 40%;
+    margin-bottom: 20px;
+    min-width: 500px
+    
+}
+.todotitle{
+    display: flex;
+    
+    margin-bottom: 10px;
+    justify-content: start;
+    text-align: end;
+}
+.addbar{
+    display: flex;
+    /* background-color: aliceblue; */
+    padding: 5px;
+    width: 30%;
+    min-width: 500px;
+}
+
+.todoinput{
+    border:none;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

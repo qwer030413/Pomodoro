@@ -29,9 +29,12 @@
 }
 .minitab{
     display: flex;
-    gap: 5rem;
-    margin-bottom: 60px;
+    gap: 3rem;
+    margin-bottom: 50px;
     text-align: center;
+    background-color: rgb(27, 25, 27);
+    border-radius: 25px;
+    /* padding: 10px; */
     
 }
 .show-content{
@@ -52,37 +55,37 @@
 .content{
     display:none;
 }
-.minitabbtn{
-    cursor: pointer;
-    
-}
+
 .minicontainer1{
     display: flex;
     flex-direction: column;
     width: 750px;
-    height: 550px;
+    height: 600px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(98, 99, 86);
+    background-color: rgb(44, 45, 109);
+    border-radius: 30px;
 
 }
 .minicontainer2{
     display: flex;
     flex-direction: column;
     width: 750px;
-    height: 550px;
+    height: 600px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(110, 74, 69);
+    background-color: rgb(57, 47, 97);
+    border-radius: 30px;
 }
 .minicontainer3{
     display: flex;
     flex-direction: column;
     width: 750px;
-    height: 550px;
+    height: 600px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(56, 51, 61);
+    background-color: rgb(58, 57, 68);
+    border-radius: 30px;
     
 }
 
@@ -95,17 +98,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    padding: 10px;
+    
     
 }
 
 
+
 .indicator{
-    background-color: cyan;
+    background-color: white;
     border-radius: 25px;
     inset: 0;
-    /* color:transparent; */
     position: absolute;
     cursor: pointer;
+    
     
     
 
@@ -116,9 +123,14 @@
     display: flex;
     position: relative;
     padding: 10px;
+    
+    
 }
 .highlight{
     position: relative;
     cursor: pointer;
-
+    color:white;
+    mix-blend-mode:exclusion;
+    
 }
+
