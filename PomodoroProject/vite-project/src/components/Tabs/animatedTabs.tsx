@@ -57,7 +57,7 @@ export default function MiniTab(): ReactElement{
                     {Timer(0,1,3)}
                 </div>
                 <div className={tabs === 2? "showShortBreak" : "content"}>
-                    {Timer(0,5,1)}
+                    {Timer(0,10,0)}
                 </div>
                 <div className={tabs === 3? "showLongBreak" : "content"}>
                     {Timer(0,15,1)} 
