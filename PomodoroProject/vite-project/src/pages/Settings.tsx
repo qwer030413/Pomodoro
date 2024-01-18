@@ -1,9 +1,14 @@
 import { ReactElement } from "react";
-
+import SettingsContainer from "../components/settingsContainer/settingsContainer";
 export default function Settings() : ReactElement{
 
     return(
-        <h1>Settings</h1>
+        <>
+        <body className="settingsPage">
+            <SettingsContainer />
+
+        </body>
+        </>
         );
     
 }

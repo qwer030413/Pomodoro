@@ -3,6 +3,10 @@ import { useState } from 'react';
 import Timer from '../Timer/timer';
 import {motion} from "framer-motion";
 import '../css/implements.module.css';
+import SettingsContainer from '../settingsContainer/settingsContainer';
+import { setSeconds } from '../settingsContainer/settingsContainer';
+import { timeseconds } from '../settingsContainer/settingsContainer';
+
 let minitabs = [
     {
         label:"Pomodoro",
@@ -18,7 +22,7 @@ let minitabs = [
     },
 ];
 export default function MiniTab(): ReactElement{
-    
+    // console.log(setSeconds)  
     const [tabs, setTabs] = useState(1);
     function updateTabs(id: number)
     {
@@ -54,7 +58,7 @@ export default function MiniTab(): ReactElement{
             
             <div className='minicontent'>
                 <div className={tabs === 1? "showPomodoro" : "content"}>
-                    {Timer(0,1,3)}
+                    {Timer(0,0,12)}
                 </div>
                 <div className={tabs === 2? "showShortBreak" : "content"}>
                     {Timer(0,10,0)}

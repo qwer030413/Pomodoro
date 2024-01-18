@@ -26,6 +26,13 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding: 25px;
+    background-color: rgb(45, 107, 161);
+    color: white;
+
+
+}
+::placeholder {
+    color: white;
 }
 
 .todoForm{
@@ -43,21 +50,26 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    background-color: rgb(40, 33, 167);
+
 
 }
 .functions{
     display: flex;
     align-items: end;
     justify-content: end;
-    width: 100%;
+    /* width: 100%; */
     padding: 5px;
     gap:1rem;
+    cursor: pointer;
+
 }
 .ToDoConent{
     width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .icon{
@@ -65,4 +77,37 @@
     align-items: center;
     margin:0;
     font-size: 25px;
+}
+
+.completed{
+    display: flex;
+    text-decoration: line-through;
+    width: 100%;
+    height: 100%;
+    align-items: end;
+    
+}
+.checkicon{
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+.todolabel{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    margin-left: 30px;
+
+
+}
+
+.editinput{
+    border:none;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
 }

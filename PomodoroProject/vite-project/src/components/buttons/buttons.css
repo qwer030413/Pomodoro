@@ -9,7 +9,26 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
+.editbtn{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .addbtn:hover{
     border-color: transparent;
+}
+.cancelbtn{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }

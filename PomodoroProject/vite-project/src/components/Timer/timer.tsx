@@ -7,25 +7,31 @@ import { FaPauseCircle } from "react-icons/fa";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import {motion} from 'framer-motion';
+import Confetti from 'react-confetti'
+import useWindowSize from 'react-use/lib/useWindowSize'
 
+// export let congrats = 0;
 
 export default function Timer(hr:number,min:number,sec:number): ReactElement{
-    
+    console.log(sec)
+    console.log(min)
+    console.log(hr)
     const [seconds, setSeconds] = useState(sec);
     const [minutes, setMinutes] = useState(min);
     const [hours, setHours] = useState(hr);
     const [start, setStart] = useState(false);
     const [id, setId] = useState(0);
-
+    
     let totalsec = sec + (min * 60) + (hr * 3600);
     let remainsec = seconds + (minutes * 60) + (hours * 3600);
     let percentage = (remainsec / totalsec) * 100;
+    // console.log(totalsec)
+    // console.log(remainsec)
+    // congrats = remainsec;
     
     useEffect(() => {
         let intervalID;
         if(start){
-            console.log("clicked");
-            console.log(start);
             intervalID = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
                 
@@ -34,13 +40,11 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
             setId(intervalID);
         }
         else{
-            console.log(start);
             clearInterval(id);
         }
     }, [start])
     
     const reset = () => {
-        console.log(start);
         setSeconds(sec);
         setMinutes(min);
         setHours(hr);
@@ -74,17 +78,23 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
             setSeconds(59);
        }
     }
-    
-    // else if(seconds < 0 && minutes == 0 && hours > 0)
-    // {
-    //     setMinutes(59);
-    //     setHours(hours => hours - 1);
-    // }
+    const { width, height } = useWindowSize()
+//   if(remainsec == 0)
+//   {
+//     const { width, height } = useWindowSize()
+//     return (
+//         <Confetti
+//         width={width}
+//         height={height}
+//         /> 
+//     );
+//   }
 
     
 
     return(
         <div className="timer"  style={{ width: 400, height: 400 }}>
+             
             
             <CircularProgressbarWithChildren value={percentage}>
                 <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1>

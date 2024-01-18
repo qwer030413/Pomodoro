@@ -33,7 +33,7 @@
     margin-bottom: 50px;
     text-align: center;
     background-color: rgb(27, 25, 27);
-    font-weight: bold;
+    /* font-weight: bold; */
     border-radius: 25px;
     /* padding: 10px; */
     
@@ -85,7 +85,7 @@
     height: 600px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(58, 57, 68);
+    background-color: rgb(58, 54, 129);
     border-radius: 30px;
     
 }
