@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import History from './pages/History';
-import toast from 'react-hot-toast';
+import toast,{ Toaster }  from 'react-hot-toast';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -17,6 +17,7 @@ function App() {
    })
   return (
     <>
+    <div><Toaster/></div>
       <Tabs />
       <body>
       

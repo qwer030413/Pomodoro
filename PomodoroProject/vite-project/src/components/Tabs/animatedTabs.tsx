@@ -1,8 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useState } from 'react';
 import Timer from '../Timer/timer';
-import {motion} from "framer-motion";
-import '../css/implements.module.css';
+import {motion, useAnimationControls } from "framer-motion";
 import SettingsContainer from '../settingsContainer/settingsContainer';
 import { pMinute, pHour, b1Minute, b1Hour, b2Minute, b2Hour} from '../settingsContainer/settingsContainer';
 
@@ -21,14 +20,41 @@ let minitabs = [
     },
 ];
 export default function MiniTab(): ReactElement{
-        const [tabs, setTabs] = useState(1);
-    // setSecp(timeseconds);
-    
+    const [tabs, setTabs] = useState(1);
+    const [initialTab, setInitialTab] = useState(1);
+    const [direction, setDirection] = useState(0);
+    const left = useAnimationControls()
+    let a = 1;
     function updateTabs(id: number)
     {
         setTabs(id);
         
+        
+        
+        
     }
+    
+    
+   
+    useEffect(() => {
+        
+            left.set({
+                opacity:0,
+                y: 50
+            })
+            left.start({ 
+                
+                opacity:1, 
+                y: 0, 
+                transition: { type: "spring", stiffness: 200, damping: 15  }
+            })
+
+            
+        
+       
+        
+    }, [tabs])
+    
     return(
         <div className={'minicontainer' + tabs}>
             
@@ -46,7 +72,7 @@ export default function MiniTab(): ReactElement{
                         
                         {tabs === tab.id && (
                             
-                            <motion.div layoutId='index' className="indicator"/>
+                            <motion.div layoutId='index' className="indicator" transition={{duration:0.5, type: "spring", stiffness: 200, damping: 18}}/>
                         )}
                         <span className='highlight'>{tab.label}</span>
                         
@@ -58,15 +84,26 @@ export default function MiniTab(): ReactElement{
             
             <div className='minicontent'
             >
-                <div className={tabs === 1? "showPomodoro" : "content"}>
+                <motion.div 
+                className={tabs === 1? "showPomodoro" : "content"}
+                // initial = {{opacity:0, x: -20}} 
+                animate = {left}
+                // transition={{duration:0.5, type: "spring", stiffness: 400, damping: 17}}
+                >
                     {Timer(pHour,pMinute,0)}
-                </div>
-                <div className={tabs === 2? "showShortBreak" : "content"}>
+                </motion.div>
+                <motion.div 
+                className={tabs === 2? "showShortBreak" : "content"}
+                animate = {left}
+                >
                     {Timer(b1Hour,b1Minute,0)}
-                </div>
-                <div className={tabs === 3? "showLongBreak" : "content"}>
+                </motion.div>
+                <motion.div 
+                className={tabs === 3? "showLongBreak" : "content"}
+                animate = {left}
+                >
                     {Timer(b2Hour,b2Minute,0)} 
-                </div>
+                </motion.div>
             </div>
             
             

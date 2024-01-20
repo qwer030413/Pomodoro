@@ -11,14 +11,27 @@
     
 
 }
+.home{
+    display: flex;
+    align-items: center;
+}
+.homeicon{
+    width: 50px;
+    height: 50px;
+    margin-right: 130px;
+}
 
 .title{
     justify-content: start;
-    margin-right: 15%;
     font-size: 40px;
     color: white;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 
+}
+.title:hover{
+    color:white;
 }
 .divider{
     width: 800px;
@@ -44,18 +57,18 @@
 .showPomodoro{
     display: block;
     background-color: transparent;
-    animation: fadeIn 2s;
+    /* animation: fadeIn 2s; */
 }
 .showLongBreak{
     display: block;
     background-color: transparent;
-    animation: fadeIn 2s;
+    /* animation: fadeIn 2s; */
 
 }
 .showShortBreak{
     display: block;
     background-color: transparent;
-    animation: fadeIn 2s;
+    /* animation: fadeIn 2s; */
 
 }
 .content{

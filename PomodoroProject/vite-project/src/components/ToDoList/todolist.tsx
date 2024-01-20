@@ -16,11 +16,13 @@ export default function ToDoList() : ReactElement{
     const [newInput, setNewInput] = useState('');
     const [newEdit, setNewEdit] = useState('');
     const [currentid, setid] = useState(0);
+    const [currentTask, setCurrentTask] = useState("Select a Task!");
+    const [taskIndicator, setTaskIndicator] = useState(null);
     function add(input : string)
     {
         setNewToDo([
             ...newToDo, 
-            {id: currentid, todo: input, completed: false, editing: false}
+            {id: currentid, todo: input, completed: false, editing: false, workingOn: false} 
         ]);
         setid(currentid => currentid + 1);
         console.log(currentid);
@@ -43,11 +45,18 @@ export default function ToDoList() : ReactElement{
     }
 
     function completeclick(id:number){
+
         setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed} : td))
-        
         
             
     }
+    function curtask(id:number, task:string)
+    {
+        setNewToDo(newToDo.map(td => td.id === id ? {...td, workingOn: !td.workingOn} : td));
+        setTaskIndicator(id);
+        setCurrentTask(task);
+    }
+    
     function editclick(id:number){
         setNewToDo(newToDo.map(td => td.id === id ? {...td, editing: !td.editing} : td))
         
@@ -72,15 +81,24 @@ export default function ToDoList() : ReactElement{
     
     return(
         <>
-        <div><Toaster/></div>
+        {/* <div><Toaster/></div> */}
         
             <div className="ToDoConent">
                 <div className="todoForm">
-                    <h1 className="todotitle">Current Task:</h1>
+                    <h1 className="todotitle"> <h1 className="currentTask">Current Task:</h1> {currentTask}</h1>
                     <hr className="todoDivider"/>
 
                     <div className="addbar">
-                        <input id = "txt" type="text" required={true} placeholder="Add task..." className="todoinput" onChange={(e) => setNewInput(e.target.value)}></input>
+                        <motion.input id = "txt" type="text" required={true} placeholder="Add task..." className="todoinput" 
+                        onChange={(e) => setNewInput(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter")
+                                clicked();
+                            }}
+                            whileFocus = {{
+                                scale: 1.01
+                             }}
+                        ></motion.input>
                         {ToDoButton(clicked)}
                     </div>
                 </div>
@@ -99,15 +117,34 @@ export default function ToDoList() : ReactElement{
 
 
                     :(
-                        <div className="todoItems" key={td.id} >
+                        <motion.div 
+                        className={td.id == taskIndicator?  "todoItems workingon":"todoItems" } key={td.id} 
+                        variants={{
+                            before:{opacity:0, marginTop:0},
+
+                        }}
+                        initial = {{opacity:0, y: -20}}
+                        animate = {{opacity:1, y: 0}}
+                        transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
+                        whileHover={{ 
+                            scale: 1.03,
+                            textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                            
+                         }}
+                         whileTap={{
+                            scale:1,
+                            
+                         }}
+                         
+                        >
                         
                         {(td.completed === false ? 
                         (<div className="checkicon"onClick={() => completeclick(td.id)}><ImRadioUnchecked /></div>) 
                         : (<div className="checkicon"onClick={() => completeclick(td.id)}><FaCheckCircle /></div>) 
                         )}
 
-                        <div className="todolabel" onClick={() => completeclick(td.id)}>
-                            <p className={td.completed == true? "completed":""}>{td.todo}</p>
+                        <div className="todolabel" onClick={() => curtask(td.id, td.todo)}>
+                            <p className={td.completed == true? "completed ":""}>{td.todo}</p>
                         </div>
                         
                         <div className='functions'>
@@ -140,7 +177,7 @@ export default function ToDoList() : ReactElement{
                             
             
                         </div>
-                    </div>
+                    </motion.div>
                     )       
                 ))}
             </div>

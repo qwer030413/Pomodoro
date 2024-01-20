@@ -93,7 +93,13 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
         <div className="timer"  style={{ width: 400, height: 400 }}>
              
             
-            <CircularProgressbarWithChildren value={percentage}>
+            <CircularProgressbarWithChildren value={percentage}
+             styles={buildStyles({
+
+                
+
+             })}
+            >
                 <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1>
                 <div className="startstop">
                     <motion.div 
