@@ -13,21 +13,18 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 // export let congrats = 0;
 
 export default function Timer(hr:number,min:number,sec:number): ReactElement{
-    console.log(sec)
-    console.log(min)
-    console.log(hr)
+   
+    
     const [seconds, setSeconds] = useState(sec);
     const [minutes, setMinutes] = useState(min);
     const [hours, setHours] = useState(hr);
     const [start, setStart] = useState(false);
     const [id, setId] = useState(0);
     
-    let totalsec = sec + (min * 60) + (hr * 3600);
-    let remainsec = seconds + (minutes * 60) + (hours * 3600);
+    let totalsec = Number(sec) + (min * 60) + (hr * 3600);
+    let remainsec = Number(seconds) + (minutes * 60) + (hours * 3600);
     let percentage = (remainsec / totalsec) * 100;
-    // console.log(totalsec)
-    // console.log(remainsec)
-    // congrats = remainsec;
+    
     
     useEffect(() => {
         let intervalID;

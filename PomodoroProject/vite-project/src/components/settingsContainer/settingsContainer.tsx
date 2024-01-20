@@ -1,35 +1,81 @@
 import './stcontainer.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import SaveSettingBtn from '../buttons/SaveSettingsbtn';
+let pMinute = 0;
+let pHour = 0;
+let b1Minute = 0;
+let b1Hour = 0;
+let b2Minute = 0;
+let b2Hour = 0;
 
-let timeseconds = 0;
+
 export default function SettingsContainer(){
-const[sec, setSec] = useState(0);
-const[seconds, setSeconds] = useState(1);
-// timeseconds = seconds;
-console.log(sec);
+const[pmin, setpMin] = useState(0); 
+const[pHr, setpHr] = useState(0); 
+const[b1Min, setb1Min] = useState(0); 
+const[b1Hr, setb1Hr] = useState(0); 
+const[b2Min, setb2Min] = useState(0); 
+const[b2Hr, setb2Hr] = useState(0); 
+const[seconds, setSeconds] = useState(0);
+
 function savetime(){
-    
-    setSeconds(sec);
-    timeseconds = seconds;
-    // console.log(timeseconds);
+    if(pmin < 59 && pmin >= 0 && b1Min < 59 && b1Min >= 0 && b2Min < 59 && b2Min >= 0 && pHr >= 0&& b1Hr >= 0&& b2Hr >= 0)
+    {
+        pMinute = pmin;
+        pHour = pHr;
+        b1Minute = b1Min;
+        b1Hour = b1Hr;
+        b2Minute = b2Min;
+        b2Hour = b2Hr;
+        toast.success("Saved!", {id:"saved!"});
+    }
+    else{
+        toast.error("Invalid value!", {id:"invalid!"});
+    }
+        
+}
+
+function a(){
+
 }
     return(
+        <>
+        <div><Toaster /></div>
         <div className='scontainer'>
-            <text>Settings</text>
+            <p className='SettingsTab'>Settings</p>
             <hr className='settingdivider'/>
             <div className='allsettings'>
                 <div className='timersettings'>
-                    <text className='tstitle'>Timer Settings</text>
-                    <input type='number' className='pomodoroinput' onChange={(e) => setSec(e.target.value)} ></input>
-                    <button onClick={savetime}>save</button>
+                    <p className='tstitle'>Timer Settings</p>
+                    <label className='timerlabels'>Pomodoro</label>
+                    <div className='timerSetter'>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setpHr(Number(e.target.value))} placeholder="Hours"  ></input>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setpMin(Number(e.target.value))} placeholder="Minutes" ></input>
+                    </div>
+                    <label className='timerlabels'>Short Break</label>
+                    <div className='timerSetter'>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setb1Hr(Number(e.target.value))} placeholder="Hours" ></input>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setb1Min(Number(e.target.value))} placeholder="Minutes" ></input>
+                    </div>
+                    <label className='timerlabels'>Long Break</label>
+                    <div className='timerSetter'>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setb2Hr(Number(e.target.value))} placeholder="Hours" ></input>
+                    <input type='number' className='pomodoroinput' onChange={(e) => setb2Min(Number(e.target.value))} placeholder="Minutes" ></input>
+                    </div>
+                    
+                    {/* <SaveSettingBtn event ={{a}} text = "save"/> */}
+                    {SaveSettingBtn(savetime, "save")}
                 </div>
             </div>
             
         </div>
+        </>
+        
     );
 
 }
 
-export {timeseconds};
+export {pMinute, pHour, b1Minute, b1Hour, b2Minute, b2Hour};
 

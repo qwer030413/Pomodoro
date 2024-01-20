@@ -38,7 +38,7 @@ export default function ToDoList() : ReactElement{
             
         }
         else{
-            toast.error("Task can't be blank!");
+            toast.error("Task can't be blank!", {id:"Blank!"});
         }
     }
 
@@ -63,7 +63,7 @@ export default function ToDoList() : ReactElement{
             
         }
         else{
-            toast.error("Edit can't be Blank!")
+            toast.error("Edit can't be Blank!", {id:"editBlank!"})
         }
     }
     

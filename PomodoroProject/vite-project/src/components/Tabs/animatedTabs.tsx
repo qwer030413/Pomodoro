@@ -4,8 +4,7 @@ import Timer from '../Timer/timer';
 import {motion} from "framer-motion";
 import '../css/implements.module.css';
 import SettingsContainer from '../settingsContainer/settingsContainer';
-import { setSeconds } from '../settingsContainer/settingsContainer';
-import { timeseconds } from '../settingsContainer/settingsContainer';
+import { pMinute, pHour, b1Minute, b1Hour, b2Minute, b2Hour} from '../settingsContainer/settingsContainer';
 
 let minitabs = [
     {
@@ -22,8 +21,8 @@ let minitabs = [
     },
 ];
 export default function MiniTab(): ReactElement{
-    // console.log(setSeconds)  
-    const [tabs, setTabs] = useState(1);
+        const [tabs, setTabs] = useState(1);
+    // setSecp(timeseconds);
     function updateTabs(id: number)
     {
         setTabs(id);
@@ -58,13 +57,13 @@ export default function MiniTab(): ReactElement{
             
             <div className='minicontent'>
                 <div className={tabs === 1? "showPomodoro" : "content"}>
-                    {Timer(0,0,12)}
+                    {Timer(pHour,pMinute,0)}
                 </div>
                 <div className={tabs === 2? "showShortBreak" : "content"}>
-                    {Timer(0,10,0)}
+                    {Timer(b1Hour,b1Minute,0)}
                 </div>
                 <div className={tabs === 3? "showLongBreak" : "content"}>
-                    {Timer(0,15,1)} 
+                    {Timer(b2Hour,b2Minute,0)} 
                 </div>
             </div>
             
