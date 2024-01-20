@@ -9,7 +9,12 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function App() {
-  
+  const url = window.location.href;
+
+  useEffect(() => {
+    // Dismiss all active toasts
+    toast.dismiss()
+   })
   return (
     <>
       <Tabs />

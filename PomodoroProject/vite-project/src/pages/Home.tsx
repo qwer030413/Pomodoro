@@ -7,10 +7,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import toast from "react-hot-toast";
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
-    // useEffect(() => {
-    //     // Dismiss all active toasts
-    //     toast.dismiss()
-    //    }, ["/"])
+    
     return(
         <>
         

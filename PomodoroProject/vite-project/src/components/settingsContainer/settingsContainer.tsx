@@ -12,13 +12,12 @@ let b2Hour = 0;
 
 
 export default function SettingsContainer(){
-const[pmin, setpMin] = useState(0); 
-const[pHr, setpHr] = useState(0); 
-const[b1Min, setb1Min] = useState(0); 
-const[b1Hr, setb1Hr] = useState(0); 
-const[b2Min, setb2Min] = useState(0); 
-const[b2Hr, setb2Hr] = useState(0); 
-const[seconds, setSeconds] = useState(0);
+const[pmin, setpMin] = useState(pMinute); 
+const[pHr, setpHr] = useState(pHour); 
+const[b1Min, setb1Min] = useState(b1Minute); 
+const[b1Hr, setb1Hr] = useState(b1Hour); 
+const[b2Min, setb2Min] = useState(b2Minute); 
+const[b2Hr, setb2Hr] = useState(b2Hour); 
 
 function savetime(){
     if(pmin < 59 && pmin >= 0 && b1Min < 59 && b1Min >= 0 && b2Min < 59 && b2Min >= 0 && pHr >= 0&& b1Hr >= 0&& b2Hr >= 0)

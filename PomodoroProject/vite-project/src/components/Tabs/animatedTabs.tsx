@@ -23,6 +23,7 @@ let minitabs = [
 export default function MiniTab(): ReactElement{
         const [tabs, setTabs] = useState(1);
     // setSecp(timeseconds);
+    
     function updateTabs(id: number)
     {
         setTabs(id);
