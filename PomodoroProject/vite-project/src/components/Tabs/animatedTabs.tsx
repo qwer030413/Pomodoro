@@ -56,7 +56,8 @@ export default function MiniTab(): ReactElement{
             </div>
             
             
-            <div className='minicontent'>
+            <div className='minicontent'
+            >
                 <div className={tabs === 1? "showPomodoro" : "content"}>
                     {Timer(pHour,pMinute,0)}
                 </div>

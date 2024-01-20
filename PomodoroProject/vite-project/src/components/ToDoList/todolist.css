@@ -51,8 +51,21 @@
     align-items: center;
     padding: 10px;
     background-color: rgb(40, 33, 167);
+    animation: slide 0.5s;
 
 
+}
+
+@keyframes slide {
+    from{
+        margin-top: -10%;
+        opacity: 0;
+    }
+    to{
+        margin-top: 0%;
+        opacity: 1;
+    }
+    
 }
 .functions{
     display: flex;

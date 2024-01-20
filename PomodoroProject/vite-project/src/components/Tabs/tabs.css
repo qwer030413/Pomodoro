@@ -44,17 +44,36 @@
 .showPomodoro{
     display: block;
     background-color: transparent;
+    animation: fadeIn 2s;
 }
 .showLongBreak{
     display: block;
     background-color: transparent;
+    animation: fadeIn 2s;
+
 }
 .showShortBreak{
     display: block;
     background-color: transparent;
+    animation: fadeIn 2s;
+
 }
 .content{
     display:none;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        
+        
+    }
+
+    to{
+        opacity: 1;
+        
+    }
+    
 }
 
 .minicontainer1{
