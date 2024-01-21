@@ -19,7 +19,6 @@
 }
 .addbar{
     display: flex;
-    /* background-color: aliceblue; */
     padding:5px;
     width: 100%;
     min-width: 600px;
@@ -57,7 +56,6 @@
     align-items: center;
     padding: 10px;
     background-color: rgb(40, 33, 167);
-    /* animation: slide 0.5s; */
 
 
 }
@@ -65,17 +63,7 @@
     background-color: rgb(145, 73, 73);
 }
 
-@keyframes slide {
-    from{
-        margin-top: -10%;
-        opacity: 0;
-    }
-    to{
-        margin-top: 0%;
-        opacity: 1;
-    }
-    
-}
+
 .functions{
     display: flex;
     align-items: end;
@@ -105,6 +93,7 @@
     display: flex;
     text-decoration: line-through;
     align-items: center;
+    
     
 }
 .checkicon{

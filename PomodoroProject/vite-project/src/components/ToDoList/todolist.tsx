@@ -29,7 +29,6 @@ export default function ToDoList() : ReactElement{
     }
     const handleRemoveItem = (id: number) => {
         setNewToDo(newToDo.filter((item: { id: number; }) => item.id !== id))
-        
     }
     function clicked()
     {
@@ -53,6 +52,8 @@ export default function ToDoList() : ReactElement{
     function curtask(id:number, task:string)
     {
         setNewToDo(newToDo.map(td => td.id === id ? {...td, workingOn: !td.workingOn} : td));
+        
+        
         setTaskIndicator(id);
         setCurrentTask(task);
     }
