@@ -1,12 +1,9 @@
-import { ReactElement } from 'react';
+import React, { MouseEventHandler, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import {motion} from 'framer-motion'
 
 
-interface tabbtn {
-    text: string;
-    address: string;
-}
+
 
 
 // function TabButton(t: tabbtn) {
@@ -19,12 +16,12 @@ interface tabbtn {
 //     );
 // }
 
-const TabButton = (t: tabbtn) : ReactElement=>{
+function TabButton(click:MouseEventHandler,address:string, classname:string, text:string):ReactElement{
     
     return(
-        <Link to ={t.address}>
+        <Link to ={address}>
         <motion.button
-        className='TabButton'
+        className={classname}
         whileHover={{ 
             y:-10,
 
@@ -36,7 +33,8 @@ const TabButton = (t: tabbtn) : ReactElement=>{
             
          }}
         transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
-        >{t.text}</motion.button>
+        onClick={click}
+        >{text}</motion.button>
         </Link>
         
     );

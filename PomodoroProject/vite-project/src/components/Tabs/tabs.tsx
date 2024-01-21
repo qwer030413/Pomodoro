@@ -11,8 +11,13 @@ export default function Tabs(){
         {id: 3, name: "Login", address: "/pages/Login.ts"}
     ]
     const [tabs, setTabs] = useState(initialTabs);
-    
+    const [workingTab, setWorkingTab] = useState(0);
 
+    function activeTab(id:number){
+        setWorkingTab(id);
+    }
+
+    
     return(
         <> 
         <nav className="tab">
@@ -40,7 +45,17 @@ export default function Tabs(){
                 
 
                 {tabs.map((tab:any) => (
-                    <TabButton text = {tab.name} address={tab.address} />
+                    // <TabButton 
+                    // text = {tab.name} 
+                    // address={tab.address} 
+                    // classname="TabButton"
+                    // classname={tab.id == workingTab? "TabButton selected":"TabButton"}
+                    // click = {activeTab(tab.id)}
+                    // /> 
+                    <div>
+                         {TabButton(() => activeTab(tab.id), tab.address, "TabButton", tab.name)}
+                    </div>
+                   
                 ))}
 
             </div>
