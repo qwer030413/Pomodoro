@@ -35,3 +35,11 @@
 .timesavebutton{
     background-color: rgb(62, 152, 199);
 }
+
+.ClearBtn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}

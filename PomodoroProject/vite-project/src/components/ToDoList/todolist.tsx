@@ -9,7 +9,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { ImRadioUnchecked } from "react-icons/im";
 import EditButton from "../buttons/editButton";
 import toast, { Toaster } from 'react-hot-toast';
-
+import ClearButton from "../buttons/ClearButton";
 
 export default function ToDoList() : ReactElement{
     const [newToDo, setNewToDo] = useState([] as any);
@@ -65,6 +65,10 @@ export default function ToDoList() : ReactElement{
             
     }
 
+    function clear()
+    {
+        setNewToDo(newToDo.filter((item: { id: number; }) => item.id === -1))
+    }
     function edit(id:number){
         let title = (document.getElementById("edit") as HTMLInputElement).value;
         console.log(title);
@@ -103,6 +107,9 @@ export default function ToDoList() : ReactElement{
                         {ToDoButton(clicked)}
                     </div>
                 </div>
+                {(newToDo.length > 0? 
+                (<div className="clearBtn">{ClearButton(() =>clear(), "Clear All")}</div>):(<div></div>)
+                )}
                 {newToDo.map((td : any) => (
 
 
@@ -119,7 +126,9 @@ export default function ToDoList() : ReactElement{
 
                     :(
                         <motion.div 
-                        className={td.id == taskIndicator?  "todoItems workingon":"todoItems" } key={td.id} 
+                        className={td.id == taskIndicator?  "todoItems workingon":"todoItems" } 
+                        
+                        key={td.id} 
                         variants={{
                             before:{opacity:0, marginTop:0},
 
