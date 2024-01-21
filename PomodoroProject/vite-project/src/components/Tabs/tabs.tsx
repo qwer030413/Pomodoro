@@ -3,7 +3,16 @@ import './tabs.css';
 import { Link } from 'react-router-dom';
 import { FcOvertime } from "react-icons/fc";
 import {motion} from 'framer-motion';
+import { useState } from "react";
 export default function Tabs(){
+    let initialTabs = [
+        {id: 1, name: "History", address: "/pages/History.ts"},
+        {id: 2, name: "Settings", address: "/pages/Settings.ts"},
+        {id: 3, name: "Login", address: "/pages/Login.ts"}
+    ]
+    const [tabs, setTabs] = useState(initialTabs);
+    
+
     return(
         <> 
         <nav className="tab">
@@ -28,9 +37,11 @@ export default function Tabs(){
             
 
             <div className="buttonContainer">
-                <TabButton text="History" address="/pages/History.ts"/>
-                <TabButton text="Settings" address="/pages/Settings.ts"/>
-                <TabButton text="Login" address="/pages/Login.ts"/>
+                
+
+                {tabs.map((tab:any) => (
+                    <TabButton text = {tab.name} address={tab.address} />
+                ))}
 
             </div>
             

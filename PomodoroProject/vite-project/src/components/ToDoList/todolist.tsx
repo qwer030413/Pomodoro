@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import './todolist.css'
 import ToDoButton from "../buttons/todoButton";
 import { useState } from "react"
@@ -11,13 +11,17 @@ import EditButton from "../buttons/editButton";
 import toast, { Toaster } from 'react-hot-toast';
 import ClearButton from "../buttons/ClearButton";
 
+
 export default function ToDoList() : ReactElement{
     const [newToDo, setNewToDo] = useState([] as any);
     const [newInput, setNewInput] = useState('');
     const [newEdit, setNewEdit] = useState('');
     const [currentid, setid] = useState(0);
     const [currentTask, setCurrentTask] = useState("Select a Task!");
-    const [taskIndicator, setTaskIndicator] = useState(null);
+    const [taskIndicator, setTaskIndicator] = useState(-1);
+    const [taskCompleteClass, setTaskCompleteClass] = useState("todoItems workingon");
+
+    
     function add(input : string)
     {
         setNewToDo([
@@ -25,7 +29,6 @@ export default function ToDoList() : ReactElement{
             {id: currentid, todo: input, completed: false, editing: false, workingOn: false} 
         ]);
         setid(currentid => currentid + 1);
-        console.log(currentid);
     }
     const handleRemoveItem = (id: number) => {
         setNewToDo(newToDo.filter((item: { id: number; }) => item.id !== id))
@@ -45,17 +48,22 @@ export default function ToDoList() : ReactElement{
 
     function completeclick(id:number){
 
-        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed} : td))
+        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: !td.workingOn} : td))
+        setTaskIndicator(-1);
+        setTaskCompleteClass("todoItems");
         
             
     }
     function curtask(id:number, task:string)
     {
-        setNewToDo(newToDo.map(td => td.id === id ? {...td, workingOn: !td.workingOn} : td));
+        setNewToDo(
+            newToDo.map(td => 
+            td.id === id ? {...td, workingOn: !td.workingOn} : {...td, workingOn: false}));
         
-        
-        setTaskIndicator(id);
         setCurrentTask(task);
+        setTaskCompleteClass("todoItems workingon")
+        
+        
     }
     
     function editclick(id:number){
@@ -81,7 +89,17 @@ export default function ToDoList() : ReactElement{
         }
     }
     
-    
+    useEffect(() => {
+        if(newToDo.filter((td: { workingOn: boolean; }) => td.workingOn === true).length == 0)
+        {
+            setTaskIndicator(-1);
+            
+        }
+        else{
+            setTaskIndicator(1);
+            
+        } 
+      },[newToDo.filter((td: { workingOn: boolean; }) => td.workingOn === true).length]);
 
     
     return(
@@ -90,7 +108,7 @@ export default function ToDoList() : ReactElement{
         
             <div className="ToDoConent">
                 <div className="todoForm">
-                    <h1 className="todotitle"> <h1 className="currentTask">Current Task:</h1> {currentTask}</h1>
+                    <h1 className="todotitle"> <p className="currentTask">Current Task:</p> {(taskIndicator < 0? ("Select A Task!"):(currentTask))}</h1>
                     <hr className="todoDivider"/>
 
                     <div className="addbar">
@@ -116,7 +134,11 @@ export default function ToDoList() : ReactElement{
                     td.editing === true ?
                     (
                         <div className="addbar">
-                        <input id = "edit" type="text" required={true} placeholder="Edit Task..." className="editinput" onChange={(e) => setNewEdit(e.target.value)}></input>
+                        <motion.input id = "edit" type="text" required={true} placeholder="Edit Task..." className="editinput" onChange={(e) => setNewEdit(e.target.value)}
+                        initial = {{opacity:0, y: -20}}
+                        animate = {{opacity:1, y: 0}}
+                        transition={{duration:0.5, type: "spring", stiffness: 400, damping: 17}}
+                        ></motion.input>
                         {EditButton(() => editclick(td.id), "Cancel")}
                         {EditButton(() => edit(td.id), "Done")}
                         
@@ -126,13 +148,9 @@ export default function ToDoList() : ReactElement{
 
                     :(
                         <motion.div 
-                        className={td.id == taskIndicator?  "todoItems workingon":"todoItems" } 
+                        className={td.workingOn == true?  taskCompleteClass:"todoItems" } 
                         
                         key={td.id} 
-                        variants={{
-                            before:{opacity:0, marginTop:0},
-
-                        }}
                         initial = {{opacity:0, y: -20}}
                         animate = {{opacity:1, y: 0}}
                         transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
@@ -194,3 +212,4 @@ export default function ToDoList() : ReactElement{
         </>
     );
 }
+
