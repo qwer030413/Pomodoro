@@ -25,13 +25,13 @@ export default function Tabs(){
             <motion.div 
             className="home"
             whileHover={{ 
-                scale: 1.1,
                 textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                y:-10,
              }}
              whileTap={{
-                scale:1,
+                scale:0.9,
              }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={{ type: "spring", stiffness: 600, damping: 13 }}
             >
                 <Link className = "title" to= "/">
                     Pomodoro
