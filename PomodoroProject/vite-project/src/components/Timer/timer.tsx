@@ -9,6 +9,7 @@ import { FaArrowRotateLeft } from "react-icons/fa6";
 import {motion} from 'framer-motion';
 import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
+import FlipNumbers from 'react-flip-numbers';
 
 // export let congrats = 0;
 
@@ -100,7 +101,7 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
 
              })}
             >
-                <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1>
+                <h1>{hours < 10? "0" + hours:hours}:{minutes< 10? "0" + minutes:minutes}:{seconds< 10? "0" + seconds:seconds}</h1> 
                 <div className="startstop">
                     <motion.div 
                     whileHover={{ 
