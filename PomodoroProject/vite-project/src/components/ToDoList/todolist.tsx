@@ -48,7 +48,8 @@ export default function ToDoList() : ReactElement{
 
     function completeclick(id:number){
 
-        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: !td.workingOn} : td))
+        // setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: !td.workingOn} : td))
+        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: false} : td))
         setTaskIndicator(-1);
         setTaskCompleteClass("todoItems");
         

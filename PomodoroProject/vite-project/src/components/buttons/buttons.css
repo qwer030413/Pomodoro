@@ -52,3 +52,11 @@
 .selected{
     margin-bottom: 20px;
 }
+
+.SignInBtn{
+    width: 70%;
+    height: 50px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+}

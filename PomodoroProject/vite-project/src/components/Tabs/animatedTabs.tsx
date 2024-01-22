@@ -46,7 +46,7 @@ export default function MiniTab(): ReactElement{
                 
                 opacity:1, 
                 y: 0, 
-                transition: { type: "spring", stiffness: 200, damping: 15  }
+                transition: { type: "spring", stiffness: 400, damping: 22  }
             })
 
             
