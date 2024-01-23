@@ -8,7 +8,7 @@ export default function LoginComp(){
     const [tempPassword, settempPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
-    function SignUserIn(event){
+    function SignUserIn(event: { preventDefault: () => void; }){
         
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' || (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
             (document.getElementById("emailval") as HTMLInputElement).value = "";
