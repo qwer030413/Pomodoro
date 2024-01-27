@@ -12,16 +12,19 @@ const db = mysql.createPool({
     password: 'qwer',
     database: 'pomodoro',
 });
-app.use(cors)
-app.use(bodyParser.urlencoded({extended:true}))
+
+app.use(cors())
 app.use(express.json())
-app.get('/api', (req, res) => {
-    const sqlInsert = "INSERT INTO users(email, pw) VALUES (?,?);"
+app.use(bodyParser.urlencoded({extended:true}))
+
+app.get('/', (req, res) => {
+    const Email = req.body.a
+    const Password = req.body.b
+    console.log("Email")
     const q = "INSERT INTO users(email, pw) VALUES ('Chris@gmail.com','qwewr');"
-    db.query(q,(a,b) => {
-        console.log("works!")
+    db.query(q,(err,result) => {
+        res.send("pls work")
     })
-    // res.json("hi")
     
 
 
@@ -33,7 +36,7 @@ app.post('/', (req, res) => {
     const Email = req.body.a
     const Password = req.body.b
     db.query(test,(a,b) => {
-    console.log("working")
+    console.log("working!!")
     })
     db.query(sqlInsert,[Email, Password], (err, result) => {
         console.log(err)
@@ -44,6 +47,6 @@ app.post('/', (req, res) => {
 });
 
 
-app.listen(5174, () =>{
-    console.log("connected")
+app.listen(5172, () =>{
+    console.log("running on port 5172")
 });

@@ -11,7 +11,7 @@ export default function LoginComp(){
     function SignUserIn(event: { preventDefault: () => void; }){
         console.log("working")
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' || (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
-            Axios.post('http://localhost:5174', {
+            Axios.post('http://localhost:5172', {
                 a: Email,
                 b: Password,
             }).then(() => {
