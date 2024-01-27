@@ -1,6 +1,6 @@
 import './buttons.css'
 import {motion} from 'framer-motion'
-export default function SignInButton(){
+export default function SignInButton(event:any){
 
     return(
             <motion.input 
@@ -15,6 +15,7 @@ export default function SignInButton(){
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             
             value={"Sign In"}
+            onClick={event}
             
             />
         
