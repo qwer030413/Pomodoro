@@ -7,23 +7,15 @@ CREATE TABLE users(
 );
 
 -- @block
-INSERT INTO users(email, pw) VALUES ('ar@gmail.com', 'password!');
-
--- @block
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qwer';
+INSERT INTO users(email, pw) VALUES ('ar@gmail.caom', 'password!');
 
 
--- @block
-DROP TABLE users;
 
--- @block
-UPDATE mysql.user SET Host='127.0.0.1' WHERE Host='localhost' AND User='root';
-UPDATE mysql.db SET Host='127.0.0.1' WHERE Host='localhost' AND User='root';
-FLUSH PRIVILEGES;
+
+
+
 
 
 -- @block
 select CURRENT_USER();
 
--- @block
-mysql
