@@ -1,6 +1,6 @@
 import './login.css'
 import SignInButton from '../buttons/SignInButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {motion} from 'framer-motion'
 import Axios from 'axios'
 export default function LoginComp(){
@@ -8,26 +8,29 @@ export default function LoginComp(){
     const [tempPassword, settempPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    const [currentUser, setCurrentUser] = useState("");
+
     function SignUserIn(event: { preventDefault: () => void; }){
-        console.log("working")
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' || (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
-            Axios.post('http://localhost:5172', {
-                a: Email,
-                b: Password,
-            }).then(() => {
-                alert("done");
-            });
-            (document.getElementById("emailval") as HTMLInputElement).value = "";
-            (document.getElementById("pwval") as HTMLInputElement).value = "";
             setEmail(tempEmail);
             setPassword(tempPassword);
+            Axios.post('http://localhost:5172/login', {
+                email: Email,
+                password: Password
+            }).then(() => {
+            });
+            setCurrentUser(Email);
+            (document.getElementById("emailval") as HTMLInputElement).value = "";
+            (document.getElementById("pwval") as HTMLInputElement).value = "";
             event.preventDefault();
             
         }
         
        
     }
-
+    useEffect(() => {
+        console.log(currentUser)
+      },[currentUser]);
 
     return(
         <>

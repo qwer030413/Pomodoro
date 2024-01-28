@@ -17,29 +17,39 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get('/', (req, res) => {
-    const Email = req.body.a
-    const Password = req.body.b
-    console.log("Email")
-    const q = "INSERT INTO users(email, pw) VALUES ('Chris@gmail.com','qwewr');"
-    db.query(q,(err,result) => {
-        res.send("pls work")
-    })
+// app.get('/', (req, res) => {
+//     const Email = req.body.a
+//     const Password = req.body.b
+//     console.log("Email")
+//     const q = "INSERT INTO users(email, pw) VALUES ('Chris@gmail.com','qwewr');"
+//     db.query(q,(err,result) => {
+//         res.send("pls work")
+//     })
     
 
 
-});
+// });
 
-app.post('/', (req, res) => {
+app.post('/login', (req, res) => {
     const sqlInsert = "INSERT INTO users(email, pw) VALUES (?,?);"
-    const test = "INSERT INTO users(email, pw) VALUES ('Chris@gmail.com','qwewr');"
-    const Email = req.body.a
-    const Password = req.body.b
-    db.query(test,(a,b) => {
-    console.log("working!!")
-    })
-    db.query(sqlInsert,[Email, Password], (err, result) => {
-        console.log(err)
+    const userFind = "SELECT * FROM users WHERE email = ? AND pw = ?;"
+
+    const Email = req.body.email
+    const Password = req.body.password
+
+    db.query(userFind,[req.body.email, req.body.password], (err, result) => {
+        if(err)
+        {
+            console.log("nuh uh")
+        }
+        if(result.length > 0)
+        {
+            console.log("user found!")
+        }
+        else
+        {
+            console.log("user not found")
+        }
     })
     
 
