@@ -31,16 +31,12 @@ app.use(bodyParser.urlencoded({extended:true}))
 // });
 
 app.post('/login', (req, res) => {
-    const sqlInsert = "INSERT INTO users(email, pw) VALUES (?,?);"
     const userFind = "SELECT * FROM users WHERE email = ? AND pw = ?;"
-
-    const Email = req.body.email
-    const Password = req.body.password
 
     db.query(userFind,[req.body.email, req.body.password], (err, result) => {
         if(err)
         {
-            console.log("nuh uh")
+            console.log(err)
         }
         if(result.length > 0)
         {
@@ -49,6 +45,27 @@ app.post('/login', (req, res) => {
         else
         {
             console.log("user not found")
+        }
+    })
+    
+
+
+});
+app.post('/signUp', (req, res) => {
+    const signUp = "INSERT INTO users(email, pw, userName) VALUES (?,?,?);"
+
+    db.query(signUp,[req.body.signUpEmail, req.body.signUpPassword, req.body.signUpName], (err, result) => {
+        if(err)
+        {
+            console.log("nuh uh")
+        }
+        if(result.length > 0)
+        {
+            console.log("account Created!")
+        }
+        else
+        {
+            console.log("something is wrong")
         }
     })
     

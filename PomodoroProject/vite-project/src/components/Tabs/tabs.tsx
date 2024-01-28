@@ -6,7 +6,7 @@ import {motion} from 'framer-motion';
 import { useState } from "react";
 export default function Tabs(){
     let initialTabs = [
-        {id: 1, name: "History", address: "/pages/History.ts"},
+        {id: 1, name: "Account", address: "/pages/History.ts"},
         {id: 2, name: "Settings", address: "/pages/Settings.ts"},
         {id: 3, name: "Login", address: "/pages/Login.ts"}
     ]

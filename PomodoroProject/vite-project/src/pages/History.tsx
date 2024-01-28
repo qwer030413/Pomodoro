@@ -4,7 +4,7 @@ export default function History(): ReactElement{
 
     return(
         <body>
-             <h1>History</h1>
+             <h1>Account</h1>
 
         </body>
         );

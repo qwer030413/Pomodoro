@@ -27,11 +27,7 @@ export default function MiniTab(): ReactElement{
     let a = 1;
     function updateTabs(id: number)
     {
-        setTabs(id);
-        
-        
-        
-        
+        setTabs(id);   
     }
     
     
@@ -47,12 +43,7 @@ export default function MiniTab(): ReactElement{
                 opacity:1, 
                 y: 0, 
                 transition: { type: "spring", stiffness: 400, damping: 22  }
-            })
-
-            
-        
-       
-        
+            })       
     }, [tabs])
     
     return(
@@ -86,9 +77,7 @@ export default function MiniTab(): ReactElement{
             >
                 <motion.div 
                 className={tabs === 1? "showPomodoro" : "content"}
-                // initial = {{opacity:0, x: -20}} 
                 animate = {left}
-                // transition={{duration:0.5, type: "spring", stiffness: 400, damping: 17}}
                 >
                     {Timer(pHour,pMinute,0)}
                 </motion.div>
