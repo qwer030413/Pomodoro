@@ -15,11 +15,11 @@ export default function LoginComp(){
             setEmail(tempEmail);
             setPassword(tempPassword);
             Axios.post('http://localhost:5172/login', {
-                email: Email,
-                password: Password
+                email: tempEmail,
+                password: tempPassword
             }).then(() => {
             });
-            setCurrentUser(Email);
+            setCurrentUser(tempEmail);
             (document.getElementById("emailval") as HTMLInputElement).value = "";
             (document.getElementById("pwval") as HTMLInputElement).value = "";
             event.preventDefault();
