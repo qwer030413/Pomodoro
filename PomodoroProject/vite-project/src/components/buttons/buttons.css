@@ -62,3 +62,10 @@
     border-radius: 10px;
     margin-top: 10px;
 }
+
+.SignInLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}

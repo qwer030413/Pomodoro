@@ -7,6 +7,7 @@ import History from './pages/History';
 import toast,{ Toaster }  from 'react-hot-toast';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
+import SignUp from './pages/SignUp';
 
 function App() {
   const url = window.location.href;
@@ -26,6 +27,7 @@ function App() {
         <Route path = "/pages/History.ts" element = {<History />} />
         <Route path = "/pages/Login.ts" element = {<Login />} />
         <Route path = "/pages/Settings.ts" element = {<Settings />} />
+        <Route path = "/SignUp" element = {<SignUp />} />
       </Routes>
       </body>
     </>

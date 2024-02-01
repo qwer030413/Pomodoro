@@ -54,18 +54,14 @@ app.post('/login', (req, res) => {
 app.post('/signUp', (req, res) => {
     const signUp = "INSERT INTO users(email, pw, userName) VALUES (?,?,?);"
 
-    db.query(signUp,[req.body.signUpEmail, req.body.signUpPassword, req.body.signUpName], (err, result) => {
+    db.query(signUp,[req.body.newEmail, req.body.newPassword, req.body.newName], (err, result) => {
         if(err)
         {
-            console.log("nuh uh")
-        }
-        if(result.length > 0)
-        {
-            console.log("account Created!")
+            console.log(err)
         }
         else
         {
-            console.log("something is wrong")
+            console.log("User Created")
         }
     })
     

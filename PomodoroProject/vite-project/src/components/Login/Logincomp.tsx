@@ -3,7 +3,8 @@ import SignInButton from '../buttons/SignInButton';
 import { useEffect, useState } from 'react';
 import {motion} from 'framer-motion'
 import Axios from 'axios'
-let signedIn = false;
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export default function LoginComp(){
     const [tempEmail, settempEmail] = useState("");
@@ -28,9 +29,13 @@ export default function LoginComp(){
             event.preventDefault();
             console.log(currentUser)
         }
+        else{
+            toast.error("Please Enter Your Email And Passowrd", {id:"pwemailBlank!"});
+        }
         
        
     }
+
     
     useEffect(() => {
         console.log(currentUser)
@@ -42,15 +47,18 @@ export default function LoginComp(){
             <h1 className='loginTitle'>Login</h1>
             <form className='loginForm'>
                 
-                <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => settempEmail(e.target.value)}/>
-                <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}/>
-                {SignInButton(SignUserIn, "Sign In")}
+                <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => settempEmail(e.target.value)} placeholder='Email'/>
+                <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
+                {SignInButton("", "/pages/Login.ts",SignUserIn,true, "Sign In")}
                 
             </form>
             
             
         </div>
-        {SignInButton(SignUserIn, "Dont have an account? Sign Up")}
+        {SignInButton("Dont have an account? Sign Up", "/SignUp",true,true, "Dont have an account? Sign Up")}
+
+
+       
         </>
     );
 }
