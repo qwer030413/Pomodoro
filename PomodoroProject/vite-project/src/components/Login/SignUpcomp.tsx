@@ -66,8 +66,8 @@ export default function SignUpComp(){
             <form className='loginForm'>
                 <input id = "UserName"type='text' className='SignIn' required= {true} onChange={(e) => setName(e.target.value)} placeholder="Name"/>
                 <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
-                <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => setPassword(e.target.value)}placeholder="Password"/>
-                <input id = "repeatpw" type='text' className='SignIn' required = {true} onChange={(e) => setSecondPassword(e.target.value)} placeholder="Repeat Password"/>
+                <input id = "pwval" type='password' className='SignIn' required = {true} onChange={(e) => setPassword(e.target.value)}placeholder="Password"/>
+                <input id = "repeatpw" type='password' className='SignIn' required = {true} onChange={(e) => setSecondPassword(e.target.value)} placeholder="Repeat Password"/>
                 {SignInButton("Sign Up", SignUserIn)}
                 
             </form>

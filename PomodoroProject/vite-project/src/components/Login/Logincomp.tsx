@@ -24,7 +24,7 @@ export default function LoginComp(){
     function SignUserIn(event: { preventDefault: () => void; }){
         event.preventDefault();
         
-        if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' || (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
+        if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' && (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
             
             
             Axios.post("http://localhost:5172/login", {
@@ -68,7 +68,7 @@ export default function LoginComp(){
             <form className='loginForm'>
                 
                 <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => settempEmail(e.target.value)} placeholder='Email'/>
-                <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
+                <input id = "pwval" type='password' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
                 {SignInButton("Sign In",SignUserIn)}
                 
             </form>

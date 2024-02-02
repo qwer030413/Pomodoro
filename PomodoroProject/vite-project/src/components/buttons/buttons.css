@@ -61,6 +61,7 @@
     border: none;
     border-radius: 10px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .SignInLink{
