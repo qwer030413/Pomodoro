@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import {motion} from 'framer-motion'
 import Axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
-
+var curuser = '';
 export default function LoginComp(){
     const [tempEmail, settempEmail] = useState("");
     const [tempPassword, settempPassword] = useState("");
@@ -13,33 +14,52 @@ export default function LoginComp(){
     const [Password, setPassword] = useState("");
     const [currentUser, setCurrentUser] = useState("");
     const [userSignedIn, setUserSignedIn] = useState(false);
+    const navigate = useNavigate(); 
 
-
+    
+  
+    function redirect(){
+        navigate('/SignUp');
+    }
     function SignUserIn(event: { preventDefault: () => void; }){
+        event.preventDefault();
+        
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' || (document.getElementById("pwval") as HTMLInputElement).value.trim() != ''){
-            setEmail(tempEmail);
-            setPassword(tempPassword);
+            
+            
             Axios.post("http://localhost:5172/login", {
                 email: tempEmail,
                 password: tempPassword
+            }).then(res => {
+                setCurrentUser(res.data[0].userName);
+                curuser = res.data[0].userName;
+                
+                navigate('/')
+                toast.success("Successfully Logged In!!", {id:"loginSuccess!"});
+                
+                
+                
+            }).catch(err => {
+                    toast.error("Account does not exist...", {id:"logindne!"});
+                
             });
-            setCurrentUser(tempEmail);
+            
             (document.getElementById("emailval") as HTMLInputElement).value = "";
             (document.getElementById("pwval") as HTMLInputElement).value = "";
-            event.preventDefault();
-            console.log(currentUser)
+            
         }
+
         else{
             toast.error("Please Enter Your Email And Passowrd", {id:"pwemailBlank!"});
         }
         
-       
+        
     }
-
+    function setCurUser(user:string){
+        curuser = user;
+    }
     
-    useEffect(() => {
-        console.log(currentUser)
-      },[currentUser]);
+    
 
     return(
         <>
@@ -49,17 +69,19 @@ export default function LoginComp(){
                 
                 <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => settempEmail(e.target.value)} placeholder='Email'/>
                 <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
-                {SignInButton("", "/pages/Login.ts",SignUserIn,true, "Sign In")}
+                {SignInButton("Sign In",SignUserIn)}
                 
             </form>
             
             
         </div>
-        {SignInButton("Dont have an account? Sign Up", "/SignUp",true,true, "Dont have an account? Sign Up")}
+        {SignInButton("Dont have an account? Sign Up",redirect)}
 
 
        
         </>
     );
 }
+export {curuser};
+
 

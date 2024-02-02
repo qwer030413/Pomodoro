@@ -15,16 +15,11 @@ const db = mysql.createPool({
 
 app.use(cors())
 app.use(express.json())
+// app.use(express.static('../vite-project'))
 app.use(bodyParser.urlencoded({extended:true}))
 
-// app.get('/', (req, res) => {
-//     const Email = req.body.a
-//     const Password = req.body.b
-//     console.log("Email")
-//     const q = "INSERT INTO users(email, pw) VALUES ('Chris@gmail.com','qwewr');"
-//     db.query(q,(err,result) => {
-//         res.send("pls work")
-//     })
+// app.get('/login', (req, res) => {
+//     res.status(200).send()
     
 
 
@@ -38,13 +33,15 @@ app.post('/login', (req, res) => {
         {
             console.log(err)
         }
-        if(result.length > 0)
+        else if(result.length > 0)
         {
-            console.log("user found!")
+            console.log(result)
+            return res.json(result)
         }
         else
         {
-            console.log("user not found")
+            console.log(err)
+            return res.json(err)
         }
     })
     
@@ -53,15 +50,21 @@ app.post('/login', (req, res) => {
 });
 app.post('/signUp', (req, res) => {
     const signUp = "INSERT INTO users(email, pw, userName) VALUES (?,?,?);"
-
     db.query(signUp,[req.body.newEmail, req.body.newPassword, req.body.newName], (err, result) => {
         if(err)
         {
             console.log(err)
+            return res.status(404).json(err)
+        }
+        else if(result.length > 0)
+        {
+            console.log(result.insertId)
+            return res.json(result)
         }
         else
         {
-            console.log("User Created")
+            console.log(result)
+            return res.json(err)
         }
     })
     

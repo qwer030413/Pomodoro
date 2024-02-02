@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import {motion} from 'framer-motion'
 import Axios from 'axios'
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignUpComp(){
@@ -11,9 +12,8 @@ export default function SignUpComp(){
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const [secondPassword, setSecondPassword] = useState("")
-    const [signUpSuccess, setSignUpSuccess] = useState(false);
     const [Name, setName] = useState("");
-
+    const navigate = useNavigate(); 
 
     function SignUserIn(event: { preventDefault: () => void; }){
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' &&
@@ -21,35 +21,39 @@ export default function SignUpComp(){
         (document.getElementById("repeatpw") as HTMLInputElement).value.trim() != '' &&
         (document.getElementById("UserName") as HTMLInputElement).value.trim() != ''
         ){
-
+            event.preventDefault();
             if(Password != secondPassword)
             {
                 toast.error("Password do not match!", {id:"pwdontMatch!"});
             }
             else{
+                
                 setEmail(Email);
                 setPassword(Password);
                 Axios.post("http://localhost:5172/signUp", {
                     newEmail: Email,
                     newPassword: Password,
                     newName: Name
+                }).then(res => {
+                    navigate('/pages/Login.ts')
+                    toast.success("Account Created!", {id:"accreated!"});
+                    console.log(res)
+                }).catch(err => {
+                    toast.error("Email taken, Try a different Email!", {id:"logindne!"});
+                
                 });
                 (document.getElementById("emailval") as HTMLInputElement).value = "";
                 (document.getElementById("pwval") as HTMLInputElement).value = "";
                 (document.getElementById("repeatpw") as HTMLInputElement).value = "";
                 (document.getElementById("UserName") as HTMLInputElement).value = "";
                 
-                setSignUpSuccess(true);
-                toast.success("Account Created!", {id:"accreated!"});
+                
             }
         }
-        else if(signUpSuccess){
-            toast.success("Going To Sign In Page", {id:"redirect!"});
-        }
+        
         else{
-            toast.error("Enter your Email And Password!", {id:"enterep!"});
+            toast.error("Enter a valid Email and Password!", {id:"enterep!"});
         }
-        console.log(signUpSuccess)
         
         
        
@@ -64,7 +68,7 @@ export default function SignUpComp(){
                 <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
                 <input id = "pwval" type='text' className='SignIn' required = {true} onChange={(e) => setPassword(e.target.value)}placeholder="Password"/>
                 <input id = "repeatpw" type='text' className='SignIn' required = {true} onChange={(e) => setSecondPassword(e.target.value)} placeholder="Repeat Password"/>
-                {SignInButton("Sign Up", "/pages/Login.ts", SignUserIn, signUpSuccess, "Go To Sign In")}
+                {SignInButton("Sign Up", SignUserIn)}
                 
             </form>
             
