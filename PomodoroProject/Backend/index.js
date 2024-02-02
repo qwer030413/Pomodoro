@@ -53,7 +53,6 @@ app.post('/signUp', (req, res) => {
     db.query(signUp,[req.body.newEmail, req.body.newPassword, req.body.newName], (err, result) => {
         if(err)
         {
-            console.log(err)
             return res.status(404).json(err)
         }
         else if(result.length > 0)
