@@ -22,3 +22,27 @@ select CURRENT_USER();
 -- @block
 ALTER TABLE users
 ADD userName VARCHAR(255) NOT NULL;
+
+
+
+-- @block
+CREATE TABLE todolist(
+    id INT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    todoid INT,
+    content VARCHAR(255),
+    completed BOOLEAN,
+    editing BOOLEAN,
+    workingon BOOLEAN
+    
+
+    
+);
+
+
+-- @block
+ALTER TABLE todolist DROP COLUMN id;
+
+-- @block
+ALTER TABLE todolist
+ADD email VARCHAR(255) NOT NULL;

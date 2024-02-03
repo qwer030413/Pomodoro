@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 var curuser = '';
+var curemail = '';
 export default function LoginComp(){
     const [tempEmail, settempEmail] = useState("");
     const [tempPassword, settempPassword] = useState("");
@@ -33,7 +34,7 @@ export default function LoginComp(){
             }).then(res => {
                 setCurrentUser(res.data[0].userName);
                 curuser = res.data[0].userName;
-                
+                curemail = res.data[0].email;
                 navigate('/')
                 toast.success("Successfully Logged In!!", {id:"loginSuccess!"});
                 
@@ -55,9 +56,7 @@ export default function LoginComp(){
         
         
     }
-    function setCurUser(user:string){
-        curuser = user;
-    }
+   
     
     
 
@@ -82,6 +81,6 @@ export default function LoginComp(){
         </>
     );
 }
-export {curuser};
+export {curuser,curemail};
 
 

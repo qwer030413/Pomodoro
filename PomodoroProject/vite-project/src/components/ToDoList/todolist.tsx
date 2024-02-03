@@ -10,7 +10,8 @@ import { ImRadioUnchecked } from "react-icons/im";
 import EditButton from "../buttons/editButton";
 import toast, { Toaster } from 'react-hot-toast';
 import ClearButton from "../buttons/ClearButton";
-
+import Axios from 'axios'
+import { curemail } from "../Login/Logincomp";
 
 export default function ToDoList() : ReactElement{
     const [newToDo, setNewToDo] = useState([] as any);
@@ -39,6 +40,16 @@ export default function ToDoList() : ReactElement{
         if(title.trim() != ''){
             add(newInput);
             (document.getElementById("txt") as HTMLInputElement).value = "";
+            Axios.post("http://localhost:5172/addToDo", {
+                
+                email: curemail,
+                todoid: currentid,
+                content: title,
+                completed: false,
+                editing: false,
+                workingon:false
+
+            });
             
         }
         else{
