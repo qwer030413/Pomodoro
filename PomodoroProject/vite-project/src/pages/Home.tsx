@@ -8,9 +8,13 @@ import toast from "react-hot-toast";
 import { curuser } from "../components/Login/Logincomp";
 import { curemail } from "../components/Login/Logincomp";
 import { signedIn } from "../components/buttons/tabbtn";
+import { setButtonText } from "../components/buttons/tabbtn";
+import { buttontxt } from "../components/buttons/tabbtn";
+
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
-    
+    console.log(buttontxt)
+    setButtonText("Log Out")
     return(
         <>
         

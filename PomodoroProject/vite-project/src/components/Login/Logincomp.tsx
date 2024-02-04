@@ -6,7 +6,7 @@ import Axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { checkSignedIn } from '../buttons/tabbtn';
-
+import TabButton from '../buttons/tabbtn';
 
 var curuser = '';
 var curemail = '';
@@ -78,11 +78,13 @@ export default function LoginComp(){
                 <input id = "pwval" type='password' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
                 {SignInButton("Sign In",SignUserIn)}
                 
+                
             </form>
             
             
         </div>
         {SignInButton("Dont have an account? Sign Up",redirect)}
+        
 
 
        

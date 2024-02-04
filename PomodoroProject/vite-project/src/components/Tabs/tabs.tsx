@@ -8,6 +8,9 @@ import { curemail } from "../Login/Logincomp";
 import { setCurUser } from "../Login/Logincomp";
 import { checkSignedIn } from "../buttons/tabbtn";
 import { signedIn } from "../buttons/tabbtn";
+import toast from "react-hot-toast";
+
+
 export default function Tabs(){
     let initialTabs = [];
     
@@ -26,11 +29,15 @@ export default function Tabs(){
         {
             setCurUser("","");
             checkSignedIn(false)
+            console.log("working")
+            toast.success("Logged Out!")
         }
         
         
         
     }
+
+    
 
     
     return(
@@ -68,9 +75,7 @@ export default function Tabs(){
                 ))}
                 
                 
-                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login"))}
-                
-                
+                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login"))}               
             </div>
             
 
