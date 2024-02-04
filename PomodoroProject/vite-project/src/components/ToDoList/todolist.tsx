@@ -11,7 +11,8 @@ import EditButton from "../buttons/editButton";
 import toast, { Toaster } from 'react-hot-toast';
 import ClearButton from "../buttons/ClearButton";
 import Axios from 'axios'
-import { curemail } from "../Login/Logincomp";
+import { curemail, curuser } from "../Login/Logincomp";
+var initialId = 0;
 
 export default function ToDoList() : ReactElement{
     const [newToDo, setNewToDo] = useState([] as any);
@@ -21,18 +22,51 @@ export default function ToDoList() : ReactElement{
     const [currentTask, setCurrentTask] = useState("Select a Task!");
     const [taskIndicator, setTaskIndicator] = useState(-1);
     const [taskCompleteClass, setTaskCompleteClass] = useState("todoItems workingon");
+    let initialEmail = "";
 
+  
+    useEffect(() => {
+        Axios.post("http://localhost:5172/home", {
+                
+            email: curemail,
+            
+            
+
+        }).then(res => {
+            if(curemail != initialEmail)
+            {
+                for(let i = 0; i < res.data.length; i++)
+                {
+                    setNewToDo((newToDo: any) => [...newToDo,
+                    {id: res.data[i].todoid, todo: res.data[i].content, completed: res.data[i].completed, editing: res.data[i].editing, workingOn: res.data[i].workingon}
+                    ]);
+                }
+                initialEmail = curemail;
+            }
+            
+            
+        });
+
+    },[curemail])
     
     function add(input : string)
     {
         setNewToDo([
             ...newToDo, 
-            {id: currentid, todo: input, completed: false, editing: false, workingOn: false} 
+            {id: initialId + 1, todo: input, completed: false, editing: false, workingOn: false} 
         ]);
         setid(currentid => currentid + 1);
+        initialId = initialId + 1;
     }
-    const handleRemoveItem = (id: number) => {
+    const handleRemoveItem = (id: number, content:string) => {
         setNewToDo(newToDo.filter((item: { id: number; }) => item.id !== id))
+        Axios.post("http://localhost:5172/deleteToDo", {
+                
+            email: curemail,
+            todoid: id,
+            content: content
+
+        });
     }
     function clicked()
     {
@@ -40,16 +74,20 @@ export default function ToDoList() : ReactElement{
         if(title.trim() != ''){
             add(newInput);
             (document.getElementById("txt") as HTMLInputElement).value = "";
-            Axios.post("http://localhost:5172/addToDo", {
+            if(curemail.trim() != '')
+            {
+                Axios.post("http://localhost:5172/addToDo", {
                 
-                email: curemail,
-                todoid: currentid,
-                content: title,
-                completed: false,
-                editing: false,
-                workingon:false
+                    email: curemail,
+                    todoid: initialId,
+                    content: title,
+                    completed: false,
+                    editing: false,
+                    workingon:false
 
-            });
+                });
+            }
+            
             
         }
         else{
@@ -74,7 +112,7 @@ export default function ToDoList() : ReactElement{
         
         setCurrentTask(task);
         setTaskCompleteClass("todoItems workingon")
-        
+        console.log(id)
         
     }
     
@@ -87,7 +125,14 @@ export default function ToDoList() : ReactElement{
 
     function clear()
     {
+        console.log(curemail)
         setNewToDo(newToDo.filter((item: { id: number; }) => item.id === -1))
+        Axios.post("http://localhost:5172/ClearAll", {
+                
+                email: curemail,
+                
+
+            });
     }
     function edit(id:number){
         let title = (document.getElementById("edit") as HTMLInputElement).value;
@@ -114,9 +159,9 @@ export default function ToDoList() : ReactElement{
       },[newToDo.filter((td: { workingOn: boolean; }) => td.workingOn === true).length]);
 
     
+
     return(
         <>
-        {/* <div><Toaster/></div> */}
         
             <div className="ToDoConent">
                 <div className="todoForm">
@@ -141,8 +186,7 @@ export default function ToDoList() : ReactElement{
                 (<div className="clearBtn">{ClearButton(() =>clear(), "Clear All")}</div>):(<div></div>)
                 )}
                 {newToDo.map((td : any) => (
-
-
+                    
                     td.editing === true ?
                     (
                         <div className="addbar">
@@ -162,7 +206,7 @@ export default function ToDoList() : ReactElement{
                         <motion.div 
                         className={td.workingOn == true?  taskCompleteClass:"todoItems" } 
                         
-                        key={td.id} 
+                        key = {td.id} 
                         initial = {{opacity:0, y: -20}}
                         animate = {{opacity:1, y: 0}}
                         transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
@@ -211,7 +255,7 @@ export default function ToDoList() : ReactElement{
                              transition={{ type: "spring", stiffness: 400, damping: 17 }}
 
                             className="icon"
-                            onClick={() => handleRemoveItem(td.id)}
+                            onClick={() => handleRemoveItem(td.id, td.todo)}
                             ><MdDelete /></motion.div>
                             
                             
@@ -225,3 +269,4 @@ export default function ToDoList() : ReactElement{
     );
 }
 
+export {initialId};

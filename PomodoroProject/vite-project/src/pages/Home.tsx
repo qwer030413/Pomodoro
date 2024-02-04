@@ -6,7 +6,8 @@ import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import toast from "react-hot-toast";
 import { curuser } from "../components/Login/Logincomp";
-export let a = "";
+import { curemail } from "../components/Login/Logincomp";
+import { signedIn } from "../components/buttons/tabbtn";
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
     
@@ -14,7 +15,7 @@ export default function Home() : ReactElement{
         <>
         
         <div className="homeContainer">
-            <h1 className="UserNameDisplay">{'Welcome ' + curuser}</h1>
+            <h1 className="UserNameDisplay">{curemail != ''? ("Welcome " + curuser ): "Welcome Guest"}</h1>
         {/* {(congrats === 0? (
                         <Confetti
                     width={width}

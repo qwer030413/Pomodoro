@@ -5,9 +5,17 @@ import {motion} from 'framer-motion'
 import Axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import { checkSignedIn } from '../buttons/tabbtn';
+
 
 var curuser = '';
 var curemail = '';
+export function setCurUser(user: string, email:string){
+    curuser = user;
+    curemail = email;
+    
+}
+
 export default function LoginComp(){
     const [tempEmail, settempEmail] = useState("");
     const [tempPassword, settempPassword] = useState("");
@@ -37,7 +45,7 @@ export default function LoginComp(){
                 curemail = res.data[0].email;
                 navigate('/')
                 toast.success("Successfully Logged In!!", {id:"loginSuccess!"});
-                
+                checkSignedIn(true);
                 
                 
             }).catch(err => {

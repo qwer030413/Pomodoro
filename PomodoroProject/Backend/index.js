@@ -18,9 +18,17 @@ app.use(express.json())
 // app.use(express.static('../vite-project'))
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get('/', (req, res) => {
-    
-    
+app.post('/home', (req, res) => {
+    const userToDoList = "SELECT * FROM todolist WHERE email = ?;"
+    db.query(userToDoList,[req.body.email], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            return res.json(result)
+        }
+    })
 
 
 });
@@ -71,7 +79,15 @@ app.post('/signUp', (req, res) => {
 
 
 });
-
+app.post('/ClearAll', (req, res) => {
+    const clear = "DELETE FROM todolist WHERE email=?;"
+    db.query(clear,[req.body.email], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+    })
+});
 app.post('/addToDo', (req, res) => {
     const add = "INSERT INTO todolist(email, todoid, content, completed, editing, workingon) VALUES (?,?,?,?,?,?);"
     db.query(add,[req.body.email, req.body.todoid, req.body.content, req.body.completed,req.body.editing,req.body.workingon,], (err, result) => {
@@ -90,9 +106,18 @@ app.post('/addToDo', (req, res) => {
             return res.json(err)
         }
     })
-    
 
+});
 
+app.post('/deleteToDo', (req, res) => {
+    const deleteToDo = "DELETE FROM todolist WHERE email=? AND todoid=? AND content=?;"
+    db.query(deleteToDo,[req.body.email, req.body.todoid, req.body.content], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+        
+    })
 });
 app.listen(5172, () =>{
     console.log("running on port 5172")

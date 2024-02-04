@@ -8,14 +8,33 @@ import toast,{ Toaster }  from 'react-hot-toast';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import SignUp from './pages/SignUp';
+import { curemail } from './components/Login/Logincomp';
+import { checkSignedIn } from './components/buttons/tabbtn';
+import { signedIn } from './components/buttons/tabbtn';
+
+if(curemail.trim() != '')
+      {
+          
+        checkSignedIn(true);
+      }
+    else{
+      checkSignedIn(false);
+    }
 
 function App() {
-  const url = window.location.href;
+ 
+  useEffect(() => {
+    
+    console.log(signedIn)
+    },[signedIn])
+
 
   useEffect(() => {
     // Dismiss all active toasts
     toast.dismiss()
    })
+    
+
   return (
     <>
     <div><Toaster/></div>
