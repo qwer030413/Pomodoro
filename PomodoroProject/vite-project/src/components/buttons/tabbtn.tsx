@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import { curemail } from '../Login/Logincomp';
 import './buttons.css';
+import { MdAccountCircle } from "react-icons/md";
 
 let signedIn = false;
 let buttontxt = "";
@@ -15,7 +16,7 @@ export function setButtonText(value:string)
 }
 
 
-function TabButton(click:MouseEventHandler,address:string, classname:string, text:string):ReactElement{
+function TabButton(click:MouseEventHandler,address:string, classname:string, text:any):ReactElement{
 
     return(
         <>
@@ -56,7 +57,8 @@ function TabButton(click:MouseEventHandler,address:string, classname:string, tex
             }}
             transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
             onClick={click}
-            >{text}</motion.button>
+            >{text}
+            </motion.button>
             </Link>
 
             ))}

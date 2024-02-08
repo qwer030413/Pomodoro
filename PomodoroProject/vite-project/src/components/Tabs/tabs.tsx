@@ -9,6 +9,7 @@ import { setCurUser } from "../Login/Logincomp";
 import { checkSignedIn } from "../buttons/tabbtn";
 import { signedIn } from "../buttons/tabbtn";
 import toast from "react-hot-toast";
+import { MdAccountCircle } from "react-icons/md";
 
 
 export default function Tabs(){
@@ -66,16 +67,16 @@ export default function Tabs(){
             <div className="buttonContainer">
                 
 
-                {tabs.map((tab:any) => (
+                {/* {tabs.map((tab:any) => (
                     
                         <div key = {tab.id}>
-                            {TabButton(() => activeTab(tab.id), tab.address, "TabButton", tab.name)}
+                            {TabButton(() => activeTab(tab.id), tab.address, "TabButton", tab.name )}
                             
                         </div>
-                ))}
-                
-                
-                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login"))}               
+                ))} */} 
+                {(TabButton(() => activeTab(1), "/pages/History.ts", "TabButton", "History"))}  
+                {(TabButton(() => activeTab(2), "/pages/Settings.ts", "TabButton", "Settings"))}  
+                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login" ))}               
             </div>
             
 

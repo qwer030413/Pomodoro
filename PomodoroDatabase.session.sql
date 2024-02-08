@@ -27,7 +27,6 @@ ADD userName VARCHAR(255) NOT NULL;
 
 -- @block
 CREATE TABLE todolist(
-    id INT,
     email VARCHAR(255) NOT NULL UNIQUE,
     todoid INT,
     content VARCHAR(255),

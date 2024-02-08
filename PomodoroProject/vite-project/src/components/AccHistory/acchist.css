@@ -1,0 +1,24 @@
+
+
+.totalsec{
+    font-size: 30px;
+    color: white;
+}
+
+.accountHistory{
+    background-color: rgb(44, 45, 109);
+    width: 600px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    padding: 100px;
+}
+.settingTitle{
+    display: flex;
+    justify-content: start;
+    text-align: center;
+    align-items: center;
+    gap:1rem;
+}
