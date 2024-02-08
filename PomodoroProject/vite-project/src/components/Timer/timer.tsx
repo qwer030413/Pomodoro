@@ -12,10 +12,8 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import FlipNumbers from 'react-flip-numbers';
 import Axios from 'axios'
 import { curemail } from "../Login/Logincomp";
-import { secChange } from "../Tabs/animatedTabs";
-import { setSecChange } from "../Tabs/animatedTabs";
-
-let totalHistorySec = 0;
+let secChange = 0;
+let startChange = false;
 export default function Timer(hr:number,min:number,sec:number): ReactElement{
    
     
@@ -31,14 +29,18 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
     let remainsec = Number(seconds) + (minutes * 60) + (hours * 3600);
     let percentage = (remainsec / totalsec) * 100;
     const initialized = useRef(false)
+    
+    useEffect(() => {
+        startChange = start;
+    },[start])
     useEffect(() => {
         let intervalID;
         
         if(start == true){
             intervalID = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
-                // setSecHistory(secHistory => secHistory + 1) 
-                // setSecChange();
+                secChange = secChange + 1;
+                
             }, 1000);
             setId(intervalID);
         }
@@ -50,43 +52,29 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
     function timeout(ms:number) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    let counter = 0;
-    useEffect(() => {
+    // useEffect(() => {
         
-    if (!initialized.current) {
-            initialized.current = true
-            let ignore = false;
+    // if (!initialized.current) {
+    //         initialized.current = true
+    //         let ignore = false;
             
-            async function fetchData(){
-                await timeout(5000);
-                if(!ignore)
-                {
-                    Axios.post("http://localhost:5172/History", {
-                    email: curemail
-                    }).then(res => {
-                        totalHistorySec = res.data[0].sec;
-                        console.log(totalHistorySec)
-                        
-                        
-                    }).catch(err => {
             
-                        });
-                }   
+    //         Axios.post("http://localhost:5172/History", {
+    //         email: curemail
+    //         }).then(res => {
+    //             totalHistorySec = res.data[0].sec;
+    //             console.log(totalHistorySec)
                 
-            }
-            fetchData();
-            return () => {
-                ignore = true;
-            };
-            
-            
-        }
+                 
+    //         }).catch(err => {
+    
+    //             });         
+    //     }
        
         
         
-    }, [seconds])
-    console.log(totalHistorySec)
-
+    // }, [seconds])
+    
 
 
     const reset = () => {
@@ -196,6 +184,8 @@ export default function Timer(hr:number,min:number,sec:number): ReactElement{
     );
 }
 
-export function getTotalHistorySec(){
-    return totalHistorySec;
-}
+// export function getTotalHistorySec(){
+//     return totalHistorySec;
+// }
+
+export {secChange, startChange}

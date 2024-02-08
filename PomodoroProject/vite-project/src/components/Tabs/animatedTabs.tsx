@@ -1,10 +1,14 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import Timer from '../Timer/timer';
 import {motion, useAnimationControls } from "framer-motion";
 import SettingsContainer from '../settingsContainer/settingsContainer';
 import { pMinute, pHour, b1Minute, b1Hour, b2Minute, b2Hour} from '../settingsContainer/settingsContainer';
-
+import { secChange } from '../Timer/timer';
+import Axios from 'axios';
+import { curemail } from '../Login/Logincomp';
+import { startChange } from '../Timer/timer';
+let totalHistorySec = 0;
 let minitabs = [
     {
         label:"Pomodoro",
@@ -20,22 +24,45 @@ let minitabs = [
     },
 ];
 
-export let secChange = 0;
-export function setSecChange()
-{
-    secChange = secChange + 1;
+
+export function getTotalHistorySec(){
+    return totalHistorySec;
 }
 
 export default function MiniTab(): ReactElement{
     const [tabs, setTabs] = useState(1);
-    const [initialTab, setInitialTab] = useState(1);
-    const [direction, setDirection] = useState(0);
+    const firstRender = useRef(true);
     const left = useAnimationControls()
     let a = 1;
     function updateTabs(id: number)
     {
         setTabs(id);   
     }
+
+    useEffect(() => {
+        if(startChange == true)
+        {
+            updateData();
+        }
+        
+    },[secChange]);
+
+function updateData(){
+    
+    
+    Axios.post("http://localhost:5172/History", {
+        email: curemail
+        }).then(res => {
+            totalHistorySec = res.data[0].sec;
+            console.log(totalHistorySec)
+                
+        }).catch(err => {
+
+            }); 
+    
+   
+}
+
     
     
    
@@ -108,3 +135,5 @@ export default function MiniTab(): ReactElement{
         </div>
     );
 }
+
+export {totalHistorySec}
