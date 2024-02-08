@@ -19,6 +19,13 @@ let minitabs = [
         id: 3
     },
 ];
+
+export let secChange = 0;
+export function setSecChange()
+{
+    secChange = secChange + 1;
+}
+
 export default function MiniTab(): ReactElement{
     const [tabs, setTabs] = useState(1);
     const [initialTab, setInitialTab] = useState(1);

@@ -37,7 +37,16 @@ CREATE TABLE todolist(
 
     
 );
+-- @block
+CREATE TABLE timecomplete(
+    email VARCHAR(255) NOT NULL UNIQUE,
+    sec DOUBLE,
+    min DOUBLE,
+    hr DOUBLE
+    
 
+    
+);
 
 -- @block
 ALTER TABLE todolist DROP COLUMN id;

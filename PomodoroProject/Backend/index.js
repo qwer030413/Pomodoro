@@ -43,7 +43,6 @@ app.post('/login', (req, res) => {
         }
         else if(result.length > 0)
         {
-            console.log(result)
             return res.json(result)
         }
         else
@@ -58,7 +57,13 @@ app.post('/login', (req, res) => {
 });
 app.post('/signUp', (req, res) => {
     const signUp = "INSERT INTO users(email, pw, userName) VALUES (?,?,?);"
-    const add = "INSERT INTO todolist(id, email) VALUES (?,?);"
+    const add = "INSERT INTO timecomplete(email,sec,min,hr) VALUES (?,?,?,?);"
+    db.query(add,[req.body.newEmail,0,0,0], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+    })
     db.query(signUp,[req.body.newEmail, req.body.newPassword, req.body.newName], (err, result) => {
         if(err)
         {
@@ -66,12 +71,10 @@ app.post('/signUp', (req, res) => {
         }
         else if(result.length > 0)
         {
-            console.log(result.insertId)
             return res.json(result)
         }
         else
         {
-            console.log(result)
             return res.json(err)
         }
     })
@@ -81,6 +84,8 @@ app.post('/signUp', (req, res) => {
 });
 app.post('/ClearAll', (req, res) => {
     const clear = "DELETE FROM todolist WHERE email=?;"
+    
+
     db.query(clear,[req.body.email], (err, result) => {
         if(err)
         {
@@ -97,12 +102,10 @@ app.post('/addToDo', (req, res) => {
         }
         else if(result.length > 0)
         {
-            console.log(result.insertId)
             return res.json(result)
         }
         else
         {
-            console.log(result)
             return res.json(err)
         }
     })
@@ -119,6 +122,33 @@ app.post('/deleteToDo', (req, res) => {
         
     })
 });
+app.post('/History', (req, res) => {
+    const updateSeconds = "UPDATE timecomplete SET sec = sec + 1, min = sec / 60, hr = sec / 3600 WHERE email = ?;"
+    const getSeconds = "SELECT * FROM timecomplete where email = ?;"
+    let tempSec = 0;
+
+    db.query(updateSeconds,[req.body.email], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            db.query(getSeconds,[req.body.email], (error, data) => {
+                if(error)
+                {
+                    console.log(error)
+                }
+                else{
+                    return res.json(data)
+                }
+            })
+        }
+        
+    })
+   
+    
+});
+
 app.listen(5172, () =>{
     console.log("running on port 5172")
 });
