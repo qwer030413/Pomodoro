@@ -13,7 +13,7 @@ import { buttontxt } from "../components/buttons/tabbtn";
 
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
-    console.log(buttontxt)
+    console.log(signedIn)
     setButtonText("Log Out")
     return(
         <>

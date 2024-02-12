@@ -10,7 +10,20 @@ import { checkSignedIn } from "../buttons/tabbtn";
 import { signedIn } from "../buttons/tabbtn";
 import toast from "react-hot-toast";
 import { MdAccountCircle } from "react-icons/md";
-
+export function activeTab(id:number){
+    // const [workingTab, setWorkingTab] = useState(0);
+    // setWorkingTab(id)
+    if(id == 3 && curemail.trim() != '')
+    {
+        setCurUser("","");
+        checkSignedIn(false)
+        console.log("working")
+        toast.success("Logged Out!")
+    }
+    
+    
+    
+}
 
 export default function Tabs(){
     let initialTabs = [];
@@ -21,22 +34,10 @@ export default function Tabs(){
         // {id: 3, name: "Login", address: "/pages/Login.ts"}
     ]
     
-    const [tabs, setTabs] = useState(initialTabs);
+    const [tabs, setTabs] = useState(0);
     const [workingTab, setWorkingTab] = useState(0);
 
-    function activeTab(id:number){
-        setWorkingTab(id);
-        if(id == 3 && curemail.trim() != '')
-        {
-            setCurUser("","");
-            checkSignedIn(false)
-            console.log("working")
-            toast.success("Logged Out!")
-        }
-        
-        
-        
-    }
+    
 
     
 
@@ -46,6 +47,7 @@ export default function Tabs(){
         <nav className="tab">
         <div className="tabContainer">
             <motion.div 
+            onClick={() => activeTab(0)}
             className="home"
             whileHover={{ 
                 textShadow: "0px 0px 8px rgb(255, 255, 255)",
@@ -74,7 +76,7 @@ export default function Tabs(){
                             
                         </div>
                 ))} */} 
-                {(TabButton(() => activeTab(1), "/pages/History.ts", "TabButton", "History"))}  
+                {(TabButton(() => activeTab(1), "/pages/History.ts", "TabButton", "Account"))}  
                 {(TabButton(() => activeTab(2), "/pages/Settings.ts", "TabButton", "Settings"))}  
                 {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login" ))}               
             </div>

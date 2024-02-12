@@ -21,3 +21,16 @@
     align-items: center;
     gap:1rem;
 }
+.timeCompleted{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.AccountInfo{
+    margin-top: 20px;
+}
+.accDivider{
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}

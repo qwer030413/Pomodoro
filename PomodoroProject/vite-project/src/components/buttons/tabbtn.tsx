@@ -17,11 +17,10 @@ export function setButtonText(value:string)
 
 
 function TabButton(click:MouseEventHandler,address:string, classname:string, text:any):ReactElement{
-
     return(
         <>
         { 
-(text == "Login" && signedIn ==true?
+        (text == "Login" && signedIn ==true?
         (
             <motion.button
                 className={classname}
@@ -37,7 +36,7 @@ function TabButton(click:MouseEventHandler,address:string, classname:string, tex
                 }}
                 transition={{duration:0.5, type: "spring", stiffness: 600, damping: 13}}
                 onClick={click}
-                >{buttontxt}</motion.button>
+                >Log Out</motion.button>
             
 
             ):
