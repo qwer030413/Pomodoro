@@ -10,11 +10,16 @@ import { curemail } from "../components/Login/Logincomp";
 import { signedIn } from "../components/buttons/tabbtn";
 import { setButtonText } from "../components/buttons/tabbtn";
 import { buttontxt } from "../components/buttons/tabbtn";
+import { setTest } from "../components/buttons/tabbtn";
 
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
     console.log(signedIn)
     setButtonText("Log Out")
+    useEffect(() => {
+        setTest(100)
+    })
+    
     return(
         <>
         

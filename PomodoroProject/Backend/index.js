@@ -148,6 +148,22 @@ app.post('/History', (req, res) => {
    
     
 });
+app.post('/editTodo', (req, res) => {
+    const updateSeconds = "UPDATE todolist SET content = ? WHERE email = ? AND todoid = ?;"
+
+    db.query(updateSeconds,[req.body.editedValue, req.body.email, req.body.id], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            console.log("working?")
+        }
+        
+    })
+   
+    
+});
 
 app.listen(5172, () =>{
     console.log("running on port 5172")

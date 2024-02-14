@@ -41,6 +41,17 @@ export default function ToDoList() : ReactElement{
                     {id: res.data[i].todoid, todo: res.data[i].content, completed: res.data[i].completed, editing: res.data[i].editing, workingOn: res.data[i].workingon}
                     ]);
                 }
+                
+                // setNewToDo(res.data.map((td) => {...td, id: ToDoButton.todoid, todo: td.content}))
+                // setNewToDo(res.data.map(td => [{...td, id:res.data[0].todoid, 
+                //     todo: res.data[0].content, completed: res.data[0].completed, editing: res.data[0].editing, 
+                //     workingOn: res.data[0].workingon}]));
+                // setNewToDo(res.data.map(td => [{...td, id:td.todoid, 
+                //     todo: td.content, completed: td.completed, editing: td.editing, 
+                //     workingOn: td.workingon}]));
+
+                console.log(res.data)
+                console.log(newToDo)
                 initialEmail = curemail;
             }
             
@@ -53,7 +64,7 @@ export default function ToDoList() : ReactElement{
     {
         setNewToDo([
             ...newToDo, 
-            {id: initialId + 1, todo: input, completed: false, editing: false, workingOn: false} 
+            {id: initialId + 1, todo: input, completed: 0, editing: false, workingOn: false} 
         ]);
         setid(currentid => currentid + 1);
         initialId = initialId + 1;
@@ -81,7 +92,7 @@ export default function ToDoList() : ReactElement{
                     email: curemail,
                     todoid: initialId,
                     content: title,
-                    completed: false,
+                    completed: 0,
                     editing: false,
                     workingon:false
 
@@ -98,7 +109,8 @@ export default function ToDoList() : ReactElement{
     function completeclick(id:number){
 
         // setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: !td.workingOn} : td))
-        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: false} : td))
+        // setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: !td.completed, workingOn: false} : td))
+        setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: td.completed == 1? (0):(1), workingOn: false} : td))
         setTaskIndicator(-1);
         setTaskCompleteClass("todoItems");
         
@@ -134,12 +146,20 @@ export default function ToDoList() : ReactElement{
 
             });
     }
+
+
     function edit(id:number){
         let title = (document.getElementById("edit") as HTMLInputElement).value;
         console.log(title);
         if(title.trim() != ''){
         setNewToDo(newToDo.map(td => td.id === id ? {...td, todo:title, editing: !td.editing} : td));
-            
+        Axios.post("http://localhost:5172/editTodo", {
+                
+            email: curemail,
+            editedValue: title,
+            id:id
+
+        });
         }
         else{
             toast.error("Edit can't be Blank!", {id:"editBlank!"})
@@ -189,7 +209,7 @@ export default function ToDoList() : ReactElement{
                     
                     td.editing === true ?
                     (
-                        <div className="addbar">
+                        <div className="editbar">
                         <motion.input id = "edit" type="text" required={true} placeholder="Edit Task..." className="editinput" onChange={(e) => setNewEdit(e.target.value)}
                         initial = {{opacity:0, y: -20}}
                         animate = {{opacity:1, y: 0}}
@@ -222,13 +242,13 @@ export default function ToDoList() : ReactElement{
                          
                         >
                         
-                        {(td.completed === false ? 
+                        {(td.completed === 0 ? 
                         (<div className="checkicon"onClick={() => completeclick(td.id)}><ImRadioUnchecked /></div>) 
                         : (<div className="checkicon"onClick={() => completeclick(td.id)}><FaCheckCircle /></div>) 
                         )}
 
                         <div className="todolabel" onClick={() => curtask(td.id, td.todo)}>
-                            <p className={td.completed == true? "completed ":""}>{td.todo}</p>
+                            <p className={td.completed == 1? "completed ":""}>{td.todo}</p>
                         </div>
                         
                         <div className='functions'>

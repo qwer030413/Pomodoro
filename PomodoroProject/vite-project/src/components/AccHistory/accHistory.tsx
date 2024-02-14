@@ -24,7 +24,7 @@ export default function AccountHistory() {
                 </div>
                 <hr className="accDivider"></hr>
                 <div className="AccountInfo">
-                    <h1 className="settingTitle">Account Information <MdAccountBox /></h1>
+                    <h1 className="settingTitle">Account Settings<MdAccountBox /></h1>
                     <p className="totalsec">Email: {curemail}</p>
                     
                 </div>

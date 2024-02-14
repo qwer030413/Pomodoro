@@ -12,6 +12,7 @@
 .editbtn{
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
     text-align: center;
     border-top-left-radius:0px;
@@ -31,6 +32,7 @@
     border-bottom-left-radius:0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    align-items: center;
 }
 .timesavebutton{
     background-color: rgb(62, 152, 199);
