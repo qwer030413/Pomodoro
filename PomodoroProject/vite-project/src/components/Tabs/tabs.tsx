@@ -80,7 +80,7 @@ export default function Tabs(){
                             
                         </div>
                 ))} 
-                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", login ))} 
+                {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login/Out" ))} 
                 {/* {(TabButton(() => activeTab(1), "/pages/History.ts", "TabButton", "Account"))}  
                 {(TabButton(() => activeTab(2), "/pages/Settings.ts", "TabButton", "Settings"))}  
                 {(TabButton(() => activeTab(3), "/pages/Login.ts", "TabButton", "Login" ))}                */}

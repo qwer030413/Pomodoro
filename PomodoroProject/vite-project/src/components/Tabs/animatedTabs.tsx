@@ -28,7 +28,9 @@ let minitabs = [
 export function getTotalHistorySec(){
     return totalHistorySec;
 }
-
+export function setTotalHistorySec(){
+    totalHistorySec = totalHistorySec - 1;
+}
 export default function MiniTab(): ReactElement{
     const [tabs, setTabs] = useState(1);
     const firstRender = useRef(true);

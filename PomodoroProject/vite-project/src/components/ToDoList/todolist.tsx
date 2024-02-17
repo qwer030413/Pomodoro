@@ -12,6 +12,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import ClearButton from "../buttons/ClearButton";
 import Axios from 'axios'
 import { curemail, curuser } from "../Login/Logincomp";
+import axios from "axios";
 var initialId = 0;
 
 export default function ToDoList() : ReactElement{
@@ -23,7 +24,11 @@ export default function ToDoList() : ReactElement{
     const [taskIndicator, setTaskIndicator] = useState(-1);
     const [taskCompleteClass, setTaskCompleteClass] = useState("todoItems workingon");
     let initialEmail = "";
-
+    Axios.post("http://localhost:5172/gettingId", {
+        email : curemail,
+    }).then(res => {
+        initialId = res.data[0].LargestId
+    });
   
     useEffect(() => {
         Axios.post("http://localhost:5172/home", {
@@ -113,7 +118,11 @@ export default function ToDoList() : ReactElement{
         setNewToDo(newToDo.map(td => td.id === id ? {...td, completed: td.completed == 1? (0):(1), workingOn: false} : td))
         setTaskIndicator(-1);
         setTaskCompleteClass("todoItems");
-        
+        Axios.post("http://localhost:5172/completed", {
+            email:curemail,
+            id:id
+
+        });
             
     }
     function curtask(id:number, task:string)

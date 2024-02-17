@@ -164,6 +164,37 @@ app.post('/editTodo', (req, res) => {
    
     
 });
+app.post('/gettingId', (req, res) => {
+    const selectGreatest = "SELECT MAX(todoid) AS LargestId FROM todolist WHERE email = ?;"
+
+    db.query(selectGreatest,[req.body.email], (err, result) => {
+        
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            console.log("working?")
+            return res.json(result)
+        }
+        
+    })
+   
+    
+});
+
+app.post('/completed' , (req, res) => {
+    const completed = "UPDATE todolist SET completed = NOT completed WHERE email = ? AND todoid = ?;"
+    db.query(completed, [req.body.email, req.body.id], (err, result) => {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            console.log("edit working")
+        }
+    })
+});
 
 app.listen(5172, () =>{
     console.log("running on port 5172")

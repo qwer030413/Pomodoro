@@ -7,17 +7,27 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { getTotalHistorySec } from "../Tabs/animatedTabs";
 import { MdAccountBox } from "react-icons/md";
+import { setTotalHistorySec } from "../Tabs/animatedTabs";
 
+const AccountHistory = () => {
+    const [a, setA] = useState(0);
+    useEffect(() => {
+       setA(0)
+       
+   }, [])
+   useEffect(() => {
+        setA(getTotalHistorySec())
+        console.log("email changed")
+        // {() => this.setState({email: curemail})}
+   }, [curemail])
 
-export default function AccountHistory() {
-   
-
+   console.log(a)
     return(
         <>
             <div className='accountHistory'>
                 <div className="timeCompleted">   
                     <h1 className="settingTitle">Time Completed <MdAccessTime /></h1>
-                    <p className='totalsec'>Total Seconds Worked: {getTotalHistorySec()}</p>
+                    <p className='totalsec'>Total Seconds Worked: {a}</p>
                     <p className='totalsec'>Total Minutes Worked: {Math.round(getTotalHistorySec() / 60 * 100) / 100}</p>
                     <p className='totalsec'>Total Hours Worked: {Math.round(getTotalHistorySec() / 3600 * 100) / 100}</p>
 
@@ -36,3 +46,4 @@ export default function AccountHistory() {
     );
 }
 
+export default AccountHistory
