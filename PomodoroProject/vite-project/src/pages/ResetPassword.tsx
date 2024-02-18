@@ -1,13 +1,14 @@
-import { ReactElement, useEffect } from "react";
-import SettingsContainer from "../components/settingsContainer/settingsContainer";
+
+import { useEffect } from "react";
+import Reset from "../components/Login/resetPwComp";
 import { useNavigate } from "react-router-dom";
 
-export default function Settings() : ReactElement{
+export default function ResetPassword(){
     const navigate = useNavigate(); 
     useEffect(() => {
         const handleEsc = (event) => {
            if (event.key === 'Escape') {
-            navigate("/")
+            navigate("/pages/Login.ts")
           }
         };
         window.addEventListener('keydown', handleEsc);
@@ -18,11 +19,9 @@ export default function Settings() : ReactElement{
       }, []);
     return(
         <>
-        <body className="settingsPage">
-            <SettingsContainer />
-
-        </body>
+        <h1>Forgot your password?</h1>
+        <Reset />
         </>
-        );
-    
+        
+    );
 }

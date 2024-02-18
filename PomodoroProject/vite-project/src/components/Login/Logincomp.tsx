@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { checkSignedIn } from '../buttons/tabbtn';
 import TabButton from '../buttons/tabbtn';
+import { BiSolidShow } from "react-icons/bi";
 
 var curuser = '';
 var curemail = '';
@@ -19,6 +20,7 @@ export function setCurUser(user: string, email:string){
 export default function LoginComp(){
     const [tempEmail, settempEmail] = useState("");
     const [tempPassword, settempPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const [currentUser, setCurrentUser] = useState("");
@@ -26,9 +28,13 @@ export default function LoginComp(){
     const navigate = useNavigate(); 
 
     
+
   
     function redirect(){
-        navigate('/SignUp');
+        navigate("/SignUp");
+    }
+    function forgotPW(){
+        navigate("/PwReset")
     }
     function SignUserIn(event: { preventDefault: () => void; }){
         event.preventDefault();
@@ -75,7 +81,9 @@ export default function LoginComp(){
             <form className='loginForm'>
                 
                 <input id = "emailval"type='email' className='SignIn' required= {true} onChange={(e) => settempEmail(e.target.value)} placeholder='Email'/>
-                <input id = "pwval" type='password' className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password'/>
+                <input id = "pwval" type={showPassword? "text":"password"} className='SignIn' required = {true} onChange={(e) => settempPassword(e.target.value)}placeholder='Password' />
+                {/* <BiSolidShow className='showPW'/> */}
+
                 {SignInButton("Sign In",SignUserIn)}
                 
                 
@@ -84,6 +92,7 @@ export default function LoginComp(){
             
         </div>
         {SignInButton("Dont have an account? Sign Up",redirect)}
+        {SignInButton("Reset your Password",forgotPW)}
         
 
 

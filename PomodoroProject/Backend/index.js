@@ -40,6 +40,7 @@ app.post('/login', (req, res) => {
         if(err)
         {
             console.log(err)
+            return res.json(err)
         }
         else if(result.length > 0)
         {
@@ -47,7 +48,6 @@ app.post('/login', (req, res) => {
         }
         else
         {
-            console.log(err)
             return res.json(err)
         }
     })
@@ -195,6 +195,31 @@ app.post('/completed' , (req, res) => {
         }
     })
 });
+app.post('/resetPw', (req, res) => {
+    const reseting = "UPDATE users SET pw = ? WHERE email = ? AND pw = ?;"
+    db.query(reseting, [req.body.newPassWord, req.body.email, req.body.password], (err, result) => {
+        if(err)
+        {
+            console.log("1")
+            // return res.json(err)
+        }
+        // else if(result.length > 0)
+        // {
+        //     console.log("2")
+        //     console.log(result)
+        //     return res.json(result)
+            
+            
+        // }
+        else{
+            console.log(err)
+            console.log(result)
+            // return res.json(err)
+            return res.json(result)
+            
+        }
+    })
+})
 
 app.listen(5172, () =>{
     console.log("running on port 5172")

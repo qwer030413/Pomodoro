@@ -26,7 +26,9 @@ export function setTest(value:number)
 function TabButton(click:MouseEventHandler,address:string, classname:string, text:any){
     const[LoggedIn, setLoggedIn] = useState(false)
     const[count, setCount] = useState(testcount)
-   
+    useEffect(()=>{
+        setLoggedIn(signedIn)
+    }, [signedIn])
     if(text == "Login" && curemail.trim() != '')
     {
         return(

@@ -11,9 +11,11 @@ import { signedIn } from "../components/buttons/tabbtn";
 import { setButtonText } from "../components/buttons/tabbtn";
 import { buttontxt } from "../components/buttons/tabbtn";
 import { setTest } from "../components/buttons/tabbtn";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() : ReactElement{
     const { width, height } = useWindowSize();
+    const navigate = useNavigate(); 
     console.log(signedIn)
     setButtonText("Log Out")
     useEffect(() => {
