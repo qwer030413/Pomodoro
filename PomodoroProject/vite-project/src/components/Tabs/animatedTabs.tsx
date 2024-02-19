@@ -29,8 +29,25 @@ export function getTotalHistorySec(){
     return totalHistorySec;
 }
 export function setTotalHistorySec(){
-    totalHistorySec = totalHistorySec - 1;
+    MiniTab();
 }
+
+
+export function updateData(){
+    
+    
+    Axios.post("http://localhost:5172/History", {
+        email: curemail
+        }).then(res => {
+            totalHistorySec = res.data[0].sec;
+            console.log(totalHistorySec)
+                
+        }).catch(err => {
+
+            }); 
+        
+       
+    }
 export default function MiniTab(): ReactElement{
     const [tabs, setTabs] = useState(1);
     const firstRender = useRef(true);
@@ -49,21 +66,21 @@ export default function MiniTab(): ReactElement{
         
     },[secChange]);
 
-function updateData(){
+// function updateData(){
     
     
-    Axios.post("http://localhost:5172/History", {
-        email: curemail
-        }).then(res => {
-            totalHistorySec = res.data[0].sec;
-            console.log(totalHistorySec)
+//     Axios.post("http://localhost:5172/History", {
+//         email: curemail
+//         }).then(res => {
+//             totalHistorySec = res.data[0].sec;
+//             console.log(totalHistorySec)
                 
-        }).catch(err => {
+//         }).catch(err => {
 
-            }); 
+//             }); 
     
    
-}
+// }
 
     
     

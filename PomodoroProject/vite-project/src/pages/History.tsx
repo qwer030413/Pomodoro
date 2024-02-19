@@ -4,9 +4,10 @@ import AccountInformation from "../components/AccHistory/accInfo";
 import { curemail } from "../components/Login/Logincomp";
 import SignInButton from "../components/buttons/SignInButton";
 import { useNavigate } from "react-router-dom";
-
+import { getTotalHistorySec } from "../components/Tabs/animatedTabs";
 export default function History(): ReactElement{
     const navigate = useNavigate(); 
+    //esc
     useEffect(() => {
         const handleEsc = (event) => {
            if (event.key === 'Escape') {
@@ -23,12 +24,15 @@ export default function History(): ReactElement{
         navigate('/pages/Login.ts');
         event.preventDefault();
     }
-
+    useEffect(() => {
+      getTotalHistorySec();
+      console.log("parent working")
+    },[])
     return(
         <>
         <body>
             {(curemail.trim() != ''?
-            (<><h1>Account</h1><AccountHistory /><AccountInformation /></>):
+            (<><h1>Account</h1><AccountHistory seconds = {getTotalHistorySec()}/><AccountInformation /></>):
             (
                 <>
                     <h1>Create an Account to track your time!</h1>

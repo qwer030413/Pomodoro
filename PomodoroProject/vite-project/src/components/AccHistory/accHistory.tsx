@@ -8,13 +8,10 @@ import { useEffect, useState } from "react";
 import { getTotalHistorySec } from "../Tabs/animatedTabs";
 import { MdAccountBox } from "react-icons/md";
 import { setTotalHistorySec } from "../Tabs/animatedTabs";
-
-const AccountHistory = () => {
+import { updateData } from "../Tabs/animatedTabs";
+function AccountHistory(props){
     const [a, setA] = useState(0);
-    useEffect(() => {
-       setA(0)
-       
-   }, [])
+
    useEffect(() => {
         setA(getTotalHistorySec())
         console.log("email changed")
@@ -27,7 +24,7 @@ const AccountHistory = () => {
             <div className='accountHistory'>
                 <div className="timeCompleted">   
                     <h1 className="settingTitle">Time Completed <MdAccessTime /></h1>
-                    <p className='totalsec'>Total Seconds Worked: {a}</p>
+                    <p className='totalsec'>Total Seconds Worked: {props.seconds}</p>
                     <p className='totalsec'>Total Minutes Worked: {Math.round(getTotalHistorySec() / 60 * 100) / 100}</p>
                     <p className='totalsec'>Total Hours Worked: {Math.round(getTotalHistorySec() / 3600 * 100) / 100}</p>
 

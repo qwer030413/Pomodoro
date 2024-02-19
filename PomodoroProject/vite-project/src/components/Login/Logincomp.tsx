@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { checkSignedIn } from '../buttons/tabbtn';
 import TabButton from '../buttons/tabbtn';
 import { BiSolidShow } from "react-icons/bi";
+import { updateData } from '../Tabs/animatedTabs';
 
 var curuser = '';
 var curemail = '';
@@ -52,6 +53,7 @@ export default function LoginComp(){
                 navigate('/')
                 toast.success("Successfully Logged In!!", {id:"loginSuccess!"});
                 checkSignedIn(true);
+                updateData();
                 
                 
             }).catch(err => {
@@ -91,7 +93,7 @@ export default function LoginComp(){
             
             
         </div>
-        {SignInButton("Dont have an account? Sign Up",redirect)}
+        {SignInButton("Don't have an account? Sign Up",redirect)}
         {SignInButton("Reset your Password",forgotPW)}
         
 
