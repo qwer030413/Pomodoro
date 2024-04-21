@@ -14,8 +14,8 @@ export default function SignUpComp(){
     const [secondPassword, setSecondPassword] = useState("")
     const [Name, setName] = useState("");
     const navigate = useNavigate(); 
-
     function SignUserIn(event: { preventDefault: () => void; }){
+        
         if((document.getElementById("emailval") as HTMLInputElement).value.trim() != '' &&
         (document.getElementById("pwval") as HTMLInputElement).value.trim() != '' && 
         (document.getElementById("repeatpw") as HTMLInputElement).value.trim() != '' &&

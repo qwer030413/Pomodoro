@@ -9,7 +9,7 @@ export default function History(): ReactElement{
     const navigate = useNavigate(); 
     //esc
     useEffect(() => {
-        const handleEsc = (event) => {
+        const handleEsc = (event: { key: string; }) => {
            if (event.key === 'Escape') {
             navigate("/")
           }
