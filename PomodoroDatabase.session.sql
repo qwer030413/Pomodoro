@@ -49,7 +49,7 @@ CREATE TABLE timecomplete(
 );
 
 -- @block
-ALTER TABLE todolist DROP COLUMN id;
+ALTER TABLE todolist DROP COLUMN email;
 
 -- @block
 ALTER TABLE todolist
